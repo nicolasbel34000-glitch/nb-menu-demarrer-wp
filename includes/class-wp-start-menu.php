@@ -106,7 +106,6 @@ final class WP_Start_Menu {
 				<span class="wpsm-trigger-label"><?php esc_html_e( 'Démarrer', 'wp-start-menu' ); ?></span>
 			</button>
 
-			<div id="wpsm-backdrop" class="wpsm-backdrop" hidden></div>
 			<section id="wpsm-panel" class="wpsm-panel" role="dialog" aria-modal="false" aria-labelledby="wpsm-title" hidden>
 				<header class="wpsm-header">
 					<div>

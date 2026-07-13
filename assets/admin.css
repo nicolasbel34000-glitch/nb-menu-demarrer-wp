@@ -26,22 +26,19 @@
 }
 
 .wpsm-trigger {
-  position: fixed;
-  z-index: 10001;
-  bottom: 10px;
-  left: 8px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  width: 144px;
-  min-height: 44px;
-  padding: 8px 12px;
-  border: 1px solid rgba(114, 188, 255, 0.75);
-  border-radius: 10px;
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 11px;
+  border: 0;
+  border-left: 4px solid transparent;
+  border-radius: 0;
   color: #fff;
   background: #1f6da8;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.24);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   cursor: pointer;
   transition: background 140ms ease, transform 140ms ease, box-shadow 140ms ease;
 }
@@ -51,7 +48,8 @@
 .wpsm-trigger[aria-expanded="true"] {
   color: #fff;
   background: #2c80bd;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.3);
+  border-left-color: #72aee6;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   outline: 2px solid transparent;
 }
 
@@ -81,11 +79,20 @@
   white-space: nowrap;
 }
 
-.wpsm-backdrop {
+.wpsm-adminmenu-item {
+  margin-top: 8px !important;
+  padding: 0 !important;
+}
+
+.wpsm-trigger.is-floating {
   position: fixed;
-  z-index: 9998;
-  inset: 32px 0 0;
-  background: rgba(17, 24, 39, 0.08);
+  z-index: 10001;
+  bottom: 10px;
+  left: 8px;
+  width: 144px;
+  border: 1px solid rgba(114, 188, 255, 0.75);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.24);
 }
 
 .wpsm-panel {
@@ -113,6 +120,10 @@
 .wpsm-panel.is-visible {
   opacity: 1;
   transform: none;
+}
+
+.wpsm-panel[hidden] {
+  display: none !important;
 }
 
 .wpsm-header {
@@ -788,9 +799,9 @@
 }
 
 body.folded .wpsm-trigger {
-  width: 38px;
-  padding-right: 9px;
-  padding-left: 9px;
+  justify-content: center;
+  padding-right: 7px;
+  padding-left: 7px;
 }
 
 body.folded .wpsm-trigger-label {
@@ -803,18 +814,6 @@ body.folded .wpsm-panel {
 }
 
 @media screen and (max-width: 782px) {
-  .wpsm-trigger {
-    right: 10px;
-    bottom: 10px;
-    left: auto;
-    width: auto;
-  }
-
-  .wpsm-backdrop {
-    inset: 46px 0 0;
-    background: rgba(17, 24, 39, 0.32);
-  }
-
   .wpsm-panel,
   body.folded .wpsm-panel {
     right: 8px;

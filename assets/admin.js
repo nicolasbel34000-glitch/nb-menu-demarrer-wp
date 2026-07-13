@@ -31,7 +31,6 @@
 
   const trigger = root.querySelector('#wpsm-trigger');
   const panel = root.querySelector('#wpsm-panel');
-  const backdrop = root.querySelector('#wpsm-backdrop');
   const closeButton = root.querySelector('.wpsm-close');
   const organizeButton = root.querySelector('.wpsm-organize');
   const searchInput = root.querySelector('#wpsm-search');
@@ -45,8 +44,7 @@
   };
 
   trigger.addEventListener('click', togglePanel);
-  closeButton.addEventListener('click', closePanel);
-  backdrop.addEventListener('click', closePanel);
+  closeButton.addEventListener('click', () => closePanel());
   organizeButton.addEventListener('click', toggleOrganize);
   root.querySelector('.wpsm-all-apps').addEventListener('click', () => setView('alpha'));
   searchInput.addEventListener('input', renderSearch);
@@ -72,13 +70,32 @@
   });
 
   document.addEventListener('click', (event) => {
+    if (isOpen() && !panel.contains(event.target) && !trigger.contains(event.target)) {
+      closePanel(false);
+      return;
+    }
     if (state.openSubmenu && !event.target.closest('.wpsm-app')) {
       state.openSubmenu = null;
       renderActiveView();
     }
   });
 
+  mountTrigger();
   renderAll();
+
+  function mountTrigger() {
+    const adminMenu = document.getElementById('adminmenu');
+    if (!adminMenu) {
+      trigger.classList.add('is-floating');
+      return;
+    }
+
+    const menuItem = document.createElement('li');
+    menuItem.id = 'wpsm-adminmenu-item';
+    menuItem.className = 'menu-top wpsm-adminmenu-item';
+    menuItem.appendChild(trigger);
+    adminMenu.appendChild(menuItem);
+  }
 
   function normalizeLayout(layout) {
     const safe = layout && typeof layout === 'object' ? layout : {};
@@ -104,7 +121,6 @@
 
   function openPanel() {
     panel.hidden = false;
-    backdrop.hidden = false;
     trigger.setAttribute('aria-expanded', 'true');
     document.body.classList.add('wpsm-is-open');
     window.requestAnimationFrame(() => {
@@ -113,17 +129,16 @@
     });
   }
 
-  function closePanel() {
+  function closePanel(restoreFocus = true) {
     panel.classList.remove('is-visible');
     trigger.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('wpsm-is-open');
     window.setTimeout(() => {
       if (!isOpen()) {
         panel.hidden = true;
-        backdrop.hidden = true;
       }
     }, 160);
-    trigger.focus();
+    if (restoreFocus) trigger.focus();
   }
 
   function togglePanel() {
