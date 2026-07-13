@@ -18,7 +18,10 @@
   }
 
   const apps = Array.isArray(config.apps) ? config.apps : [];
-  const appMap = new Map(apps.map((app) => [app.id, app]));
+  const shortcuts = config.layout && Array.isArray(config.layout.shortcuts)
+    ? config.layout.shortcuts.map(shortcutFromRaw).filter(Boolean)
+    : [];
+  const appMap = new Map([...apps, ...shortcuts].map((app) => [app.id, app]));
   const state = {
     layout: normalizeLayout(config.layout),
     activeView: 'favorites',
@@ -80,6 +83,8 @@
     }
   });
 
+  window.addEventListener('pagehide', flushPendingLayout);
+
   mountTrigger();
   renderAll();
 
@@ -113,6 +118,11 @@
               : [],
           })).filter((folder) => folder.name)
         : [],
+      shortcuts: shortcuts.map((shortcut) => ({
+        id: shortcut.id,
+        title: shortcut.title,
+        url: shortcut.url,
+      })),
     };
   }
 
@@ -183,6 +193,9 @@
     const node = views.favorites;
     node.textContent = '';
     const heading = sectionHeading('Favoris', 'Glissez les icônes pour définir leur ordre de priorité.');
+    const addShortcut = button('Ajouter une URL', 'wpsm-button wpsm-add-shortcut', 'dashicons-admin-links');
+    addShortcut.addEventListener('click', createShortcut);
+    heading.appendChild(addShortcut);
     node.appendChild(heading);
 
     const grid = el('div', 'wpsm-app-grid wpsm-favorites-grid');
@@ -192,12 +205,20 @@
       if (app) grid.appendChild(appCard(app, { rank: index + 1, context: 'favorites' }));
     });
     if (!grid.children.length) {
-      grid.appendChild(emptyState('Ajoutez des applications depuis la vue A–Z.'));
+      grid.appendChild(emptyState('Ajoutez une application depuis A–Z ou créez un raccourci URL.'));
     }
     bindDropzone(grid, (draggedId, beforeId) => {
       moveFavorite(draggedId, beforeId);
     });
     node.appendChild(grid);
+
+    const customShortcuts = Array.from(appMap.values()).filter((item) => item.custom);
+    if (state.organize && customShortcuts.length) {
+      node.appendChild(sectionHeading('Raccourcis personnalisés', 'Ajoutez-les aux favoris ou glissez-les dans un dossier.'));
+      const shortcutGrid = el('div', 'wpsm-app-grid wpsm-shortcut-library');
+      customShortcuts.forEach((shortcut) => shortcutGrid.appendChild(appCard(shortcut, { context: 'shortcut-library', compact: true })));
+      node.appendChild(shortcutGrid);
+    }
 
     const folders = el('div', 'wpsm-favorite-folders');
     folders.appendChild(sectionHeading('Dossiers', 'Déposez une application sur un dossier.'));
@@ -230,7 +251,7 @@
     if (state.organize) {
       node.appendChild(sectionHeading('Applications disponibles', 'Glissez une application vers le dossier souhaité.'));
       const palette = el('div', 'wpsm-app-grid wpsm-palette');
-      apps.forEach((app) => palette.appendChild(appCard(app, { context: 'palette', compact: true })));
+      Array.from(appMap.values()).forEach((app) => palette.appendChild(appCard(app, { context: 'palette', compact: true })));
       node.appendChild(palette);
     }
   }
@@ -277,7 +298,7 @@
     views.search.textContent = '';
 
     const matches = [];
-    apps.forEach((app) => {
+    appMap.forEach((app) => {
       if (normalize(app.title).includes(term)) matches.push({ type: 'app', app });
       (app.children || []).forEach((child) => {
         if (normalize(`${child.title} ${app.title}`).includes(term)) matches.push({ type: 'child', app, child });
@@ -344,6 +365,14 @@
       const favorite = iconButton(isFavorite ? 'dashicons-star-filled' : 'dashicons-star-empty', isFavorite ? config.i18n.removeFavorite : config.i18n.addFavorite);
       favorite.addEventListener('click', () => toggleFavorite(app.id));
       controls.appendChild(favorite);
+      if (app.custom) {
+        const edit = iconButton('dashicons-edit', config.i18n.editShortcut);
+        edit.addEventListener('click', () => editShortcut(app.id));
+        controls.appendChild(edit);
+        const deleteButton = iconButton('dashicons-trash', config.i18n.deleteShortcut);
+        deleteButton.addEventListener('click', () => deleteShortcut(app.id));
+        controls.appendChild(deleteButton);
+      }
       if (options.folderId) {
         const remove = iconButton('dashicons-remove', 'Retirer du dossier');
         remove.addEventListener('click', () => removeFromFolder(options.folderId, app.id));
@@ -450,6 +479,7 @@
   }
 
   function moveFavorite(id, beforeId) {
+    if (id === beforeId) return;
     const favorites = state.layout.favorites;
     const current = favorites.indexOf(id);
     if (current >= 0) favorites.splice(current, 1);
@@ -505,30 +535,105 @@
     renderFolders();
   }
 
+  function createShortcut() {
+    const title = window.prompt(config.i18n.shortcutName);
+    if (!title || !title.trim()) return;
+    const inputUrl = window.prompt(config.i18n.shortcutUrl, 'https://');
+    const url = normalizeShortcutUrl(inputUrl);
+    if (!url) {
+      window.alert(config.i18n.invalidUrl);
+      return;
+    }
+
+    const shortcut = {
+      id: uniqueShortcutId(),
+      title: title.trim().slice(0, 60),
+      url,
+      icon: 'dashicons-admin-links',
+      children: [],
+      custom: true,
+    };
+    appMap.set(shortcut.id, shortcut);
+    state.layout.shortcuts.push({ id: shortcut.id, title: shortcut.title, url: shortcut.url });
+    state.layout.favorites.push(shortcut.id);
+    saveLayout();
+    renderAll();
+  }
+
+  function editShortcut(id) {
+    const shortcut = appMap.get(id);
+    if (!shortcut || !shortcut.custom) return;
+    const title = window.prompt(config.i18n.shortcutName, shortcut.title);
+    if (!title || !title.trim()) return;
+    const inputUrl = window.prompt(config.i18n.shortcutUrl, shortcut.url);
+    const url = normalizeShortcutUrl(inputUrl);
+    if (!url) {
+      window.alert(config.i18n.invalidUrl);
+      return;
+    }
+
+    shortcut.title = title.trim().slice(0, 60);
+    shortcut.url = url;
+    const stored = state.layout.shortcuts.find((item) => item.id === id);
+    if (stored) {
+      stored.title = shortcut.title;
+      stored.url = shortcut.url;
+    }
+    saveLayout();
+    renderAll();
+  }
+
+  function deleteShortcut(id) {
+    const shortcut = appMap.get(id);
+    if (!shortcut || !shortcut.custom || !window.confirm(config.i18n.deleteShortcut)) return;
+    appMap.delete(id);
+    state.layout.shortcuts = state.layout.shortcuts.filter((item) => item.id !== id);
+    state.layout.favorites = state.layout.favorites.filter((itemId) => itemId !== id);
+    state.layout.folders.forEach((folder) => {
+      folder.items = folder.items.filter((itemId) => itemId !== id);
+    });
+    saveLayout();
+    renderAll();
+  }
+
   let saveTimer;
   function saveLayout() {
     window.clearTimeout(saveTimer);
     setStatus('Enregistrement…');
-    saveTimer = window.setTimeout(async () => {
-      const body = new URLSearchParams({
-        action: config.ajax.action,
-        nonce: config.ajax.nonce,
-        layout: JSON.stringify(state.layout),
+    saveTimer = window.setTimeout(persistLayout, 80);
+  }
+
+  function layoutRequestBody() {
+    return new URLSearchParams({
+      action: config.ajax.action,
+      nonce: config.ajax.nonce,
+      layout: JSON.stringify(state.layout),
+    });
+  }
+
+  async function persistLayout() {
+    saveTimer = null;
+    try {
+      const response = await fetch(config.ajax.url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        keepalive: true,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+        body: layoutRequestBody().toString(),
       });
-      try {
-        const response = await fetch(config.ajax.url, {
-          method: 'POST',
-          credentials: 'same-origin',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-          body: body.toString(),
-        });
-        const result = await response.json();
-        if (!response.ok || !result.success) throw new Error('save failed');
-        setStatus(config.i18n.saved, true);
-      } catch (error) {
-        setStatus(config.i18n.saveError, true);
-      }
-    }, 280);
+      const result = await response.json();
+      if (!response.ok || !result.success) throw new Error('save failed');
+      setStatus(config.i18n.saved, true);
+    } catch (error) {
+      setStatus(config.i18n.saveError, true);
+    }
+  }
+
+  function flushPendingLayout() {
+    if (!saveTimer || !navigator.sendBeacon) return;
+    window.clearTimeout(saveTimer);
+    saveTimer = null;
+    navigator.sendBeacon(config.ajax.url, layoutRequestBody());
   }
 
   function setStatus(message, clear) {
@@ -639,6 +744,39 @@
 
   function uniqueId() {
     return `folder_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  function uniqueShortcutId() {
+    return `shortcut_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  function shortcutFromRaw(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    const id = String(raw.id || '');
+    const title = String(raw.title || '').trim().slice(0, 60);
+    const url = normalizeShortcutUrl(raw.url);
+    if (!/^shortcut_[a-z0-9_]{6,64}$/.test(id) || !title || !url) return null;
+    return {
+      id,
+      title,
+      url,
+      icon: 'dashicons-admin-links',
+      children: [],
+      custom: true,
+    };
+  }
+
+  function normalizeShortcutUrl(value) {
+    let raw = String(value || '').trim();
+    if (!raw) return null;
+    if (!/^[a-z][a-z0-9+.-]*:/i.test(raw) && !raw.startsWith('/')) raw = `https://${raw}`;
+    try {
+      const parsed = new URL(raw, window.location.origin);
+      if (!['http:', 'https:', 'mailto:', 'tel:'].includes(parsed.protocol)) return null;
+      return parsed.href;
+    } catch (error) {
+      return null;
+    }
   }
 
   function normalize(value) {

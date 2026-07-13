@@ -7,6 +7,7 @@ WP Start Menu ajoute un lanceur d’applications organisable à l’administrati
 - bouton **Démarrer** persistant en bas de l’administration ;
 - favoris ordonnables par glisser-déposer ;
 - dossiers personnels avec ajout, renommage et suppression ;
+- raccourcis personnalisés vers des URL internes ou externes ;
 - recherche dans les menus et sous-menus accessibles à l’utilisateur ;
 - index A–Z limité aux entrées principales — les sous-menus en sont volontairement exclus ;
 - accès aux sous-menus depuis les tuiles des applications ;
@@ -33,6 +34,7 @@ Le bouton **Organiser** active les actions de personnalisation :
 
 - faire glisser les favoris pour les classer ;
 - cliquer sur l’étoile d’une application dans A–Z pour l’ajouter ou la retirer des favoris ;
+- utiliser « Ajouter une URL » pour créer, modifier ou supprimer un raccourci personnel ;
 - créer un dossier, puis y déposer des applications ;
 - ouvrir un dossier pour renommer, supprimer ou retirer des éléments.
 

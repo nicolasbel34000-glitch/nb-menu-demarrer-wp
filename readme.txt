@@ -4,7 +4,7 @@ Tags: admin, dashboard, menu, launcher, productivity
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.1.2
+Stable tag: 0.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,7 @@ WP Start Menu a été créé initialement par NBForm. Copyright 2026 NBForm. Les
 
 * Favoris ordonnables.
 * Dossiers personnels.
+* Raccourcis personnalisés vers des URL internes ou externes.
 * Recherche dans les menus et sous-menus accessibles.
 * Liste alphabétique des entrées principales uniquement.
 * Préférences enregistrées par utilisateur.
@@ -44,6 +45,12 @@ Le lanceur respecte les droits du compte connecté et ne montre que les menus au
 Non. Elle contient uniquement les entrées principales. Les sous-menus restent accessibles depuis les applications et la recherche.
 
 == Changelog ==
+
+= 0.2.0 =
+
+* Correction de la persistance des favoris et dossiers pendant les requêtes AJAX.
+* Ajout de raccourcis URL personnalisés, modifiables et utilisables dans les favoris et dossiers.
+* Sauvegarde renforcée lors d’un changement de page.
 
 = 0.1.2 =
 

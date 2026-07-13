@@ -97,6 +97,11 @@ final class WP_Start_Menu {
 				'newFolder'     => __( 'Nom du nouveau dossier', 'wp-start-menu' ),
 				'renameFolder'  => __( 'Renommer le dossier', 'wp-start-menu' ),
 				'deleteFolder'  => __( 'Supprimer ce dossier ?', 'wp-start-menu' ),
+				'shortcutName'  => __( 'Nom du raccourci', 'wp-start-menu' ),
+				'shortcutUrl'   => __( 'Adresse du raccourci', 'wp-start-menu' ),
+				'invalidUrl'    => __( 'Cette adresse n’est pas valide.', 'wp-start-menu' ),
+				'deleteShortcut' => __( 'Supprimer ce raccourci ?', 'wp-start-menu' ),
+				'editShortcut'  => __( 'Modifier le raccourci', 'wp-start-menu' ),
 			),
 		);
 		?>
@@ -285,6 +290,8 @@ final class WP_Start_Menu {
 			return $this->default_layout( $apps );
 		}
 
+		$shortcuts = $this->sanitize_shortcuts( isset( $stored['shortcuts'] ) ? $stored['shortcuts'] : array() );
+		$valid_ids = array_merge( $valid_ids, wp_list_pluck( $shortcuts, 'id' ) );
 		$favorites = isset( $stored['favorites'] ) && is_array( $stored['favorites'] ) ? $stored['favorites'] : array();
 		$favorites = array_values( array_intersect( array_map( 'sanitize_key', $favorites ), $valid_ids ) );
 		$folders   = $this->sanitize_folders( isset( $stored['folders'] ) ? $stored['folders'] : array(), $valid_ids );
@@ -292,6 +299,7 @@ final class WP_Start_Menu {
 		return array(
 			'favorites' => array_values( array_unique( $favorites ) ),
 			'folders'   => $folders,
+			'shortcuts' => $shortcuts,
 		);
 	}
 
@@ -337,7 +345,46 @@ final class WP_Start_Menu {
 		return array(
 			'favorites' => array_slice( wp_list_pluck( $apps, 'id' ), 0, 6 ),
 			'folders'   => $folders,
+			'shortcuts' => array(),
 		);
+	}
+
+	/**
+	 * Sanitize user-defined shortcuts.
+	 *
+	 * @param mixed $shortcuts Raw shortcuts.
+	 * @return array<int,array<string,string>>
+	 */
+	private function sanitize_shortcuts( $shortcuts ) {
+		$clean = array();
+		if ( ! is_array( $shortcuts ) ) {
+			return $clean;
+		}
+
+		foreach ( array_slice( $shortcuts, 0, 50 ) as $index => $shortcut ) {
+			if ( ! is_array( $shortcut ) || empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
+				continue;
+			}
+
+			$title = sanitize_text_field( $shortcut['title'] );
+			$url   = esc_url_raw( $shortcut['url'], array( 'http', 'https', 'mailto', 'tel' ) );
+			if ( '' === $title || '' === $url ) {
+				continue;
+			}
+
+			$id = isset( $shortcut['id'] ) ? sanitize_key( $shortcut['id'] ) : '';
+			if ( ! preg_match( '/^shortcut_[a-z0-9_]{6,64}$/', $id ) ) {
+				$id = 'shortcut_' . substr( md5( $title . '|' . $url . '|' . $index ), 0, 12 );
+			}
+
+			$clean[] = array(
+				'id'    => $id,
+				'title' => function_exists( 'mb_substr' ) ? mb_substr( $title, 0, 60 ) : substr( $title, 0, 60 ),
+				'url'   => $url,
+			);
+		}
+
+		return $clean;
 	}
 
 	/**
@@ -345,9 +392,10 @@ final class WP_Start_Menu {
 	 *
 	 * @param mixed         $folders Raw folders.
 	 * @param array<string> $valid_ids Allowed app IDs.
+	 * @param bool          $allow_app_ids Whether deterministic app IDs may be retained during AJAX.
 	 * @return array<int,array<string,mixed>>
 	 */
-	private function sanitize_folders( $folders, $valid_ids ) {
+	private function sanitize_folders( $folders, $valid_ids, $allow_app_ids = false ) {
 		$clean = array();
 		if ( ! is_array( $folders ) ) {
 			return $clean;
@@ -360,7 +408,16 @@ final class WP_Start_Menu {
 
 			$name  = sanitize_text_field( $folder['name'] );
 			$items = isset( $folder['items'] ) && is_array( $folder['items'] ) ? $folder['items'] : array();
-			$items = array_values( array_unique( array_intersect( array_map( 'sanitize_key', $items ), $valid_ids ) ) );
+			$items = array_values(
+				array_unique(
+					array_filter(
+						array_map( 'sanitize_key', $items ),
+						static function ( $id ) use ( $valid_ids, $allow_app_ids ) {
+							return in_array( $id, $valid_ids, true ) || ( $allow_app_ids && preg_match( '/^app_[a-f0-9]{12}$/', $id ) );
+						}
+					)
+				)
+			);
 			$clean[] = array(
 				'id'    => ! empty( $folder['id'] ) ? sanitize_key( $folder['id'] ) : 'folder_' . wp_generate_password( 8, false, false ),
 				'name'  => function_exists( 'mb_substr' ) ? mb_substr( $name, 0, 40 ) : substr( $name, 0, 40 ),
@@ -393,11 +450,23 @@ final class WP_Start_Menu {
 			wp_send_json_error( array( 'message' => __( 'Données invalides.', 'wp-start-menu' ) ), 400 );
 		}
 
-		$apps      = $this->get_visible_apps();
-		$valid_ids = wp_list_pluck( $apps, 'id' );
+		// admin-ajax.php does not build the global WordPress admin menu. App IDs
+		// are therefore validated by their deterministic format during saving,
+		// then intersected with the user's actual visible menu on the next render.
+		$shortcuts    = $this->sanitize_shortcuts( isset( $layout['shortcuts'] ) ? $layout['shortcuts'] : array() );
+		$shortcut_ids = wp_list_pluck( $shortcuts, 'id' );
 		$favorites = isset( $layout['favorites'] ) && is_array( $layout['favorites'] ) ? $layout['favorites'] : array();
-		$favorites = array_values( array_unique( array_intersect( array_map( 'sanitize_key', $favorites ), $valid_ids ) ) );
-		$folders   = $this->sanitize_folders( isset( $layout['folders'] ) ? $layout['folders'] : array(), $valid_ids );
+		$favorites = array_values(
+			array_unique(
+				array_filter(
+					array_map( 'sanitize_key', $favorites ),
+					static function ( $id ) use ( $shortcut_ids ) {
+						return in_array( $id, $shortcut_ids, true ) || preg_match( '/^app_[a-f0-9]{12}$/', $id );
+					}
+				)
+			)
+		);
+		$folders = $this->sanitize_folders( isset( $layout['folders'] ) ? $layout['folders'] : array(), $shortcut_ids, true );
 
 		update_user_meta(
 			get_current_user_id(),
@@ -405,6 +474,7 @@ final class WP_Start_Menu {
 			array(
 				'favorites' => $favorites,
 				'folders'   => $folders,
+				'shortcuts' => $shortcuts,
 			)
 		);
 
