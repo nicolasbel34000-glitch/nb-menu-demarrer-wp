@@ -1,0 +1,35 @@
+# Secrets and local configuration.
+.env
+.env.*
+!.env.example
+wp-config.php
+auth.json
+composer-auth.json
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+
+# Databases, backups, archives and logs.
+*.sql
+*.sqlite
+*.sqlite3
+*.bak
+*.backup
+*.log
+*.zip
+dist/
+
+# Editor and operating-system files.
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Dependencies and build output.
+node_modules/
+vendor/
+coverage/
