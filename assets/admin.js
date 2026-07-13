@@ -95,6 +95,7 @@
     menuItem.className = 'menu-top wpsm-adminmenu-item';
     menuItem.appendChild(trigger);
     adminMenu.appendChild(menuItem);
+    document.body.classList.add('wpsm-has-trigger');
   }
 
   function normalizeLayout(layout) {

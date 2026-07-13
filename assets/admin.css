@@ -80,8 +80,24 @@
 }
 
 .wpsm-adminmenu-item {
-  margin-top: 8px !important;
-  padding: 0 !important;
+  position: fixed !important;
+  z-index: 10001;
+  bottom: 0;
+  left: 0;
+  width: 160px;
+  margin: 0 !important;
+  padding: 8px !important;
+  background: #1d2327;
+  box-shadow: 0 -6px 14px rgba(0, 0, 0, 0.16);
+}
+
+body.wpsm-has-trigger #adminmenu {
+  padding-bottom: 58px;
+}
+
+.wpsm-adminmenu-item .wpsm-trigger {
+  border: 1px solid rgba(114, 188, 255, 0.75);
+  border-radius: 8px;
 }
 
 .wpsm-trigger.is-floating {
@@ -804,6 +820,11 @@ body.folded .wpsm-trigger {
   padding-left: 7px;
 }
 
+body.folded .wpsm-adminmenu-item {
+  width: 36px;
+  padding: 5px 2px !important;
+}
+
 body.folded .wpsm-trigger-label {
   display: none;
 }
@@ -814,6 +835,18 @@ body.folded .wpsm-panel {
 }
 
 @media screen and (max-width: 782px) {
+  .wpsm-adminmenu-item {
+    position: sticky !important;
+    bottom: 0;
+    width: 100%;
+    padding: 8px !important;
+  }
+
+  body.folded .wpsm-adminmenu-item {
+    width: 100%;
+    padding: 8px !important;
+  }
+
   .wpsm-panel,
   body.folded .wpsm-panel {
     right: 8px;

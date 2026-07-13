@@ -4,7 +4,7 @@ Tags: admin, dashboard, menu, launcher, productivity
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 0.1.1
+Stable tag: 0.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,10 @@ Le lanceur respecte les droits du compte connecté et ne montre que les menus au
 Non. Elle contient uniquement les entrées principales. Les sous-menus restent accessibles depuis les applications et la recherche.
 
 == Changelog ==
+
+= 0.1.2 =
+
+* Le bouton Démarrer reste visible en permanence en bas de la colonne WordPress sans recouvrir les autres liens.
 
 = 0.1.1 =
 
