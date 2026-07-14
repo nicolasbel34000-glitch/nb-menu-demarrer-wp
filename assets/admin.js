@@ -73,7 +73,10 @@
   });
 
   document.addEventListener('click', (event) => {
-    if (isOpen() && !panel.contains(event.target) && !trigger.contains(event.target)) {
+    const eventPath = typeof event.composedPath === 'function' ? event.composedPath() : [];
+    const clickedInsidePanel = eventPath.includes(panel) || panel.contains(event.target);
+    const clickedTrigger = eventPath.includes(trigger) || trigger.contains(event.target);
+    if (isOpen() && !clickedInsidePanel && !clickedTrigger) {
       closePanel(false);
       return;
     }
