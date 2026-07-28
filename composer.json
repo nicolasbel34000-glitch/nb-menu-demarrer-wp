@@ -1,0 +1,28 @@
+{
+  "name": "nbform/wp-start-menu",
+  "description": "An organizable application launcher for the WordPress administration.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "php": ">=7.4"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "wp-coding-standards/wpcs": "^3.2"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "sort-packages": true
+  },
+  "scripts": {
+    "lint": [
+      "@php -l wp-start-menu.php",
+      "@php -l includes/class-wp-start-menu.php",
+      "@php -l uninstall.php",
+      "@php tools/check-release.php"
+    ],
+    "phpcs": "phpcs"
+  }
+}

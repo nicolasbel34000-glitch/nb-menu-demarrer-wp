@@ -10,3 +10,7 @@
 .gitignore export-ignore
 .gitattributes export-ignore
 .github export-ignore
+tools export-ignore
+phpcs.xml.dist export-ignore
+composer.json export-ignore
+composer.lock export-ignore

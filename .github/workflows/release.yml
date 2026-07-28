@@ -1,0 +1,62 @@
+name: Publish release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install development tools
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Verify source
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          composer lint
+          composer phpcs
+          node --check assets/admin.js
+          php tools/check-release.php "$version"
+
+      - name: Build installable archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          archive="wp-start-menu-${version}.zip"
+          git archive --format=zip --prefix=wp-start-menu/ --output="$archive" HEAD
+          sha256sum "$archive" > "${archive}.sha256"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          archive="wp-start-menu-${version}.zip"
+          gh release create "$GITHUB_REF_NAME" \
+            "$archive" \
+            "${archive}.sha256" \
+            --verify-tag \
+            --generate-notes \
+            --title "WP Start Menu ${version}"

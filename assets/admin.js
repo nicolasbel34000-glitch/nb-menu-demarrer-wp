@@ -29,7 +29,6 @@
     selectedFolder: null,
     openSubmenu: null,
     dragged: null,
-    saving: false,
   };
 
   const trigger = root.querySelector('#wpsm-trigger');
@@ -164,7 +163,7 @@
     state.organize = !state.organize;
     organizeButton.setAttribute('aria-pressed', String(state.organize));
     organizeButton.classList.toggle('is-active', state.organize);
-    organizeButton.querySelector('span:last-child').textContent = state.organize ? 'Terminer' : 'Organiser';
+    organizeButton.querySelector('span:last-child').textContent = state.organize ? config.i18n.done : config.i18n.organize;
     panel.classList.toggle('is-organizing', state.organize);
     renderAll();
   }
@@ -195,8 +194,8 @@
   function renderFavorites() {
     const node = views.favorites;
     node.textContent = '';
-    const heading = sectionHeading('Favoris', 'Glissez les icônes pour définir leur ordre de priorité.');
-    const addShortcut = button('Ajouter une URL', 'wpsm-button wpsm-add-shortcut', 'dashicons-admin-links');
+    const heading = sectionHeading(config.i18n.favorites, config.i18n.favoritesDescription);
+    const addShortcut = button(config.i18n.addUrl, 'wpsm-button wpsm-add-shortcut', 'dashicons-admin-links');
     addShortcut.addEventListener('click', createShortcut);
     heading.appendChild(addShortcut);
     node.appendChild(heading);
@@ -208,7 +207,7 @@
       if (app) grid.appendChild(appCard(app, { rank: index + 1, context: 'favorites' }));
     });
     if (!grid.children.length) {
-      grid.appendChild(emptyState('Ajoutez une application depuis A–Z ou créez un raccourci URL.'));
+      grid.appendChild(emptyState(config.i18n.emptyFavorites));
     }
     bindDropzone(grid, (draggedId, beforeId) => {
       moveFavorite(draggedId, beforeId);
@@ -217,14 +216,14 @@
 
     const customShortcuts = Array.from(appMap.values()).filter((item) => item.custom);
     if (state.organize && customShortcuts.length) {
-      node.appendChild(sectionHeading('Raccourcis personnalisés', 'Ajoutez-les aux favoris ou glissez-les dans un dossier.'));
+      node.appendChild(sectionHeading(config.i18n.customShortcuts, config.i18n.customShortcutsHelp));
       const shortcutGrid = el('div', 'wpsm-app-grid wpsm-shortcut-library');
       customShortcuts.forEach((shortcut) => shortcutGrid.appendChild(appCard(shortcut, { context: 'shortcut-library', compact: true })));
       node.appendChild(shortcutGrid);
     }
 
     const folders = el('div', 'wpsm-favorite-folders');
-    folders.appendChild(sectionHeading('Dossiers', 'Déposez une application sur un dossier.'));
+    folders.appendChild(sectionHeading(config.i18n.folders, config.i18n.folderDropHelp));
     const folderGrid = el('div', 'wpsm-folder-strip');
     state.layout.folders.forEach((folder) => folderGrid.appendChild(folderTile(folder, true)));
     folders.appendChild(folderGrid);
@@ -235,9 +234,9 @@
     const node = views.folders;
     node.textContent = '';
 
-    const heading = sectionHeading('Dossiers', 'Regroupez librement les applications et leurs raccourcis.');
+    const heading = sectionHeading(config.i18n.folders, config.i18n.foldersDescription);
     if (state.organize) {
-      const add = button('Nouveau dossier', 'wpsm-button wpsm-add-folder', 'dashicons-plus-alt2');
+      const add = button(config.i18n.newFolderButton, 'wpsm-button wpsm-add-folder', 'dashicons-plus-alt2');
       add.addEventListener('click', createFolder);
       heading.appendChild(add);
     }
@@ -245,14 +244,14 @@
 
     const folderGrid = el('div', 'wpsm-folder-grid');
     state.layout.folders.forEach((folder) => folderGrid.appendChild(folderTile(folder, false)));
-    if (!state.layout.folders.length) folderGrid.appendChild(emptyState('Aucun dossier pour le moment.'));
+    if (!state.layout.folders.length) folderGrid.appendChild(emptyState(config.i18n.emptyFolders));
     node.appendChild(folderGrid);
 
     const selected = state.layout.folders.find((folder) => folder.id === state.selectedFolder);
     if (selected) node.appendChild(folderDetail(selected));
 
     if (state.organize) {
-      node.appendChild(sectionHeading('Applications disponibles', 'Glissez une application vers le dossier souhaité.'));
+      node.appendChild(sectionHeading(config.i18n.availableApps, config.i18n.availableAppsHelp));
       const palette = el('div', 'wpsm-app-grid wpsm-palette');
       Array.from(appMap.values()).forEach((app) => palette.appendChild(appCard(app, { context: 'palette', compact: true })));
       node.appendChild(palette);
@@ -264,7 +263,7 @@
     node.textContent = '';
     const info = el('p', 'wpsm-alpha-note');
     info.appendChild(icon('dashicons-info-outline'));
-    info.append(' Entrées principales uniquement — sous-menus exclus');
+    info.append(` ${config.i18n.alphaNote}`);
     node.appendChild(info);
 
     const groups = new Map();
@@ -308,7 +307,10 @@
       });
     });
 
-    views.search.appendChild(sectionHeading('Résultats', `${matches.length} résultat${matches.length > 1 ? 's' : ''}`));
+    views.search.appendChild(sectionHeading(
+      config.i18n.results,
+      `${matches.length} ${matches.length === 1 ? config.i18n.result : config.i18n.resultsCount}`,
+    ));
     const results = el('div', 'wpsm-search-results');
     matches.forEach((match) => {
       const link = el('a', 'wpsm-search-result');
@@ -377,7 +379,7 @@
         controls.appendChild(deleteButton);
       }
       if (options.folderId) {
-        const remove = iconButton('dashicons-remove', 'Retirer du dossier');
+        const remove = iconButton('dashicons-remove', config.i18n.removeFromFolder);
         remove.addEventListener('click', () => removeFromFolder(options.folderId, app.id));
         controls.appendChild(remove);
       }
@@ -435,7 +437,10 @@
 
   function folderDetail(folder) {
     const detail = el('section', 'wpsm-folder-detail');
-    const heading = sectionHeading(folder.name, `${folder.items.length} application${folder.items.length > 1 ? 's' : ''}`);
+    const heading = sectionHeading(
+      folder.name,
+      `${folder.items.length} ${folder.items.length === 1 ? config.i18n.application : config.i18n.applications}`,
+    );
     if (state.organize) {
       const actions = el('div', 'wpsm-folder-actions');
       const rename = iconButton('dashicons-edit', config.i18n.renameFolder);
@@ -602,7 +607,7 @@
   let saveTimer;
   function saveLayout() {
     window.clearTimeout(saveTimer);
-    setStatus('Enregistrement…');
+    setStatus(config.i18n.saving);
     saveTimer = window.setTimeout(persistLayout, 80);
   }
 
