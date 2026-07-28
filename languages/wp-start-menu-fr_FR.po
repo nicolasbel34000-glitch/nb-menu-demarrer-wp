@@ -1,0 +1,248 @@
+# Copyright (C) 2026 NBForm
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: NB Menu démarrer WP 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-start-menu\n"
+"Language: fr_FR\n"
+"Language-Team: Français\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"PO-Revision-Date: 2026-07-28 11:15+0200\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: wp-start-menu\n"
+
+#. Plugin Name of the plugin
+#: wp-start-menu.php
+msgid "NB Menu démarrer WP"
+msgstr "NB Menu démarrer WP"
+
+#. Plugin URI of the plugin
+#: wp-start-menu.php
+msgid "https://github.com/nicolasbel34000-glitch/nb-menu-demarrer-wp"
+msgstr "https://github.com/nicolasbel34000-glitch/nb-menu-demarrer-wp"
+
+#. Description of the plugin
+#: wp-start-menu.php
+msgid "An organized Start menu for WordPress administration, with favorites, folders, search, and an alphabetical index."
+msgstr "Un menu Démarrer organisable pour l’administration WordPress, avec favoris, dossiers, recherche et index alphabétique."
+
+#. Author of the plugin
+#: wp-start-menu.php
+msgid "NBForm"
+msgstr "NBForm"
+
+#: includes/class-wp-start-menu.php:118
+#: includes/class-wp-start-menu.php:174
+msgid "Organize"
+msgstr "Organiser"
+
+#: includes/class-wp-start-menu.php:119
+msgid "Done"
+msgstr "Terminer"
+
+#: includes/class-wp-start-menu.php:120
+#: includes/class-wp-start-menu.php:190
+msgid "Favorites"
+msgstr "Favoris"
+
+#: includes/class-wp-start-menu.php:121
+msgid "Drag icons to set their priority order."
+msgstr "Glissez les icônes pour définir leur ordre de priorité."
+
+#: includes/class-wp-start-menu.php:122
+msgid "Add a URL"
+msgstr "Ajouter une URL"
+
+#: includes/class-wp-start-menu.php:123
+msgid "Add an application from A–Z or create a URL shortcut."
+msgstr "Ajoutez une application depuis A–Z ou créez un raccourci URL."
+
+#: includes/class-wp-start-menu.php:124
+msgid "Custom shortcuts"
+msgstr "Raccourcis personnalisés"
+
+#: includes/class-wp-start-menu.php:125
+msgid "Add them to favorites or drag them into a folder."
+msgstr "Ajoutez-les aux favoris ou glissez-les dans un dossier."
+
+#: includes/class-wp-start-menu.php:126
+#: includes/class-wp-start-menu.php:191
+msgid "Folders"
+msgstr "Dossiers"
+
+#: includes/class-wp-start-menu.php:127
+msgid "Drop an application onto a folder."
+msgstr "Déposez une application sur un dossier."
+
+#: includes/class-wp-start-menu.php:128
+msgid "Group applications and their shortcuts freely."
+msgstr "Regroupez librement les applications et leurs raccourcis."
+
+#: includes/class-wp-start-menu.php:129
+msgid "New folder"
+msgstr "Nouveau dossier"
+
+#: includes/class-wp-start-menu.php:130
+msgid "No folders yet."
+msgstr "Aucun dossier pour le moment."
+
+#: includes/class-wp-start-menu.php:131
+msgid "Available applications"
+msgstr "Applications disponibles"
+
+#: includes/class-wp-start-menu.php:132
+msgid "Drag an application to the desired folder."
+msgstr "Glissez une application vers le dossier souhaité."
+
+#: includes/class-wp-start-menu.php:133
+msgid "Top-level entries only — submenus excluded"
+msgstr "Entrées principales uniquement — sous-menus exclus"
+
+#: includes/class-wp-start-menu.php:134
+msgid "Results"
+msgstr "Résultats"
+
+#: includes/class-wp-start-menu.php:135
+msgid "result"
+msgstr "résultat"
+
+#: includes/class-wp-start-menu.php:136
+msgid "results"
+msgstr "résultats"
+
+#: includes/class-wp-start-menu.php:137
+msgid "application"
+msgstr "application"
+
+#: includes/class-wp-start-menu.php:138
+msgid "applications"
+msgstr "applications"
+
+#: includes/class-wp-start-menu.php:139
+msgid "No results."
+msgstr "Aucun résultat."
+
+#: includes/class-wp-start-menu.php:140
+msgid "This folder is empty."
+msgstr "Ce dossier est vide."
+
+#: includes/class-wp-start-menu.php:141
+msgid "Saving…"
+msgstr "Enregistrement…"
+
+#: includes/class-wp-start-menu.php:142
+#: includes/class-wp-start-menu.php:567
+msgid "Layout saved."
+msgstr "Organisation enregistrée."
+
+#: includes/class-wp-start-menu.php:143
+msgid "Unable to save."
+msgstr "Impossible d’enregistrer."
+
+#: includes/class-wp-start-menu.php:144
+msgid "Remove from favorites"
+msgstr "Retirer des favoris"
+
+#: includes/class-wp-start-menu.php:145
+msgid "Add to favorites"
+msgstr "Ajouter aux favoris"
+
+#: includes/class-wp-start-menu.php:146
+msgid "Show submenus"
+msgstr "Afficher les sous-menus"
+
+#: includes/class-wp-start-menu.php:147
+msgid "Remove from folder"
+msgstr "Retirer du dossier"
+
+#: includes/class-wp-start-menu.php:148
+msgid "New folder name"
+msgstr "Nom du nouveau dossier"
+
+#: includes/class-wp-start-menu.php:149
+msgid "Rename folder"
+msgstr "Renommer le dossier"
+
+#: includes/class-wp-start-menu.php:150
+msgid "Delete this folder?"
+msgstr "Supprimer ce dossier ?"
+
+#: includes/class-wp-start-menu.php:151
+msgid "Shortcut name"
+msgstr "Nom du raccourci"
+
+#: includes/class-wp-start-menu.php:152
+msgid "Shortcut address"
+msgstr "Adresse du raccourci"
+
+#: includes/class-wp-start-menu.php:153
+msgid "This address is not valid."
+msgstr "Cette adresse n’est pas valide."
+
+#: includes/class-wp-start-menu.php:154
+msgid "Delete this shortcut?"
+msgstr "Supprimer ce raccourci ?"
+
+#: includes/class-wp-start-menu.php:155
+msgid "Edit shortcut"
+msgstr "Modifier le raccourci"
+
+#: includes/class-wp-start-menu.php:162
+msgid "Start"
+msgstr "Démarrer"
+
+#: includes/class-wp-start-menu.php:168
+msgid "My applications"
+msgstr "Mes applications"
+
+#: includes/class-wp-start-menu.php:169
+msgid "Your WordPress workspace"
+msgstr "Votre espace de travail WordPress"
+
+#: includes/class-wp-start-menu.php:176
+msgid "Close"
+msgstr "Fermer"
+
+#: includes/class-wp-start-menu.php:184
+msgid "Search"
+msgstr "Rechercher"
+
+#: includes/class-wp-start-menu.php:185
+msgid "Search for an action, page, or plugin…"
+msgstr "Rechercher une action, une page ou une extension…"
+
+#: includes/class-wp-start-menu.php:189
+msgid "Start menu views"
+msgstr "Vues du menu Démarrer"
+
+#: includes/class-wp-start-menu.php:192
+msgid "A–Z"
+msgstr "A–Z"
+
+#: includes/class-wp-start-menu.php:204
+msgid "All applications"
+msgstr "Toutes les applications"
+
+#: includes/class-wp-start-menu.php:398
+msgid "Content"
+msgstr "Contenu"
+
+#: includes/class-wp-start-menu.php:403
+msgid "Administration"
+msgstr "Administration"
+
+#: includes/class-wp-start-menu.php:417
+msgid "Store"
+msgstr "Boutique"
+
+#: includes/class-wp-start-menu.php:526
+msgid "Session expired."
+msgstr "Session expirée."
+
+#: includes/class-wp-start-menu.php:531
+#: includes/class-wp-start-menu.php:536
+msgid "Invalid data."
+msgstr "Données invalides."

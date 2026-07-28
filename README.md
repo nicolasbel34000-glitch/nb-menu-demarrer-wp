@@ -1,83 +1,90 @@
 # NB Menu démarrer WP
 
-NB Menu démarrer WP ajoute un lanceur d’applications organisable à l’administration WordPress sans remplacer le menu natif.
+**English** | [Français](README.fr.md)
 
-**Version stable : 1.0.1 — GPL-2.0-or-later**
+NB Menu démarrer WP adds an organized application launcher to the WordPress administration area without replacing the native menu.
 
-## Fonctionnalités
+**Stable version: 1.1.0 — GPL-2.0-or-later**
 
-- bouton **Démarrer** persistant en bas de l’administration ;
-- favoris ordonnables par glisser-déposer ;
-- dossiers personnels avec ajout, renommage et suppression ;
-- raccourcis personnalisés vers des URL internes ou externes ;
-- recherche dans les menus et sous-menus accessibles à l’utilisateur ;
-- index A–Z limité aux entrées principales — les sous-menus en sont volontairement exclus ;
-- accès aux sous-menus depuis les tuiles des applications ;
-- organisation enregistrée séparément pour chaque utilisateur ;
-- interface responsive et navigation au clavier (`Ctrl/Cmd + K`, `Échap`).
+## Features
 
-Le plugin ne modifie ni l’ordre ni la visibilité du menu WordPress d’origine. Il construit son lanceur à partir des pages auxquelles l’utilisateur courant a déjà accès.
+- persistent **Start** button at the bottom of the administration menu;
+- drag-and-drop favorites;
+- personal folders that can be added, renamed, and deleted;
+- custom shortcuts to internal or external URLs;
+- search across the menus and submenus available to the current user;
+- A–Z index limited to top-level entries;
+- submenu access directly from application tiles;
+- a separate layout for every WordPress user;
+- responsive interface and keyboard navigation (`Ctrl/Cmd + K`, `Escape`).
 
-## Prérequis
+The plugin does not change the order or visibility of the native WordPress menu. It builds the launcher exclusively from pages the current user is already allowed to access.
 
-- WordPress 6.5 ou plus récent ;
-- PHP 7.4 ou plus récent ;
-- JavaScript activé dans le navigateur ;
-- un compte autorisé à accéder à l’administration WordPress.
+## Requirements
 
-## Auteur original et forks
+- WordPress 6.5 or later;
+- PHP 7.4 or later;
+- JavaScript enabled in the browser;
+- an account allowed to access WordPress administration.
 
-**NB Menu démarrer WP a été créé initialement par NBForm.**
+## Original author and forks
 
-Copyright © 2026 NBForm. Les forks, modifications et redistributions sont autorisés selon les conditions de la licence GPL-2.0-or-later. Les versions modifiées peuvent créditer leurs contributeurs, tout en conservant les mentions de copyright et de licence de la version originale et en signalant leurs propres modifications.
+**NB Menu démarrer WP was originally created by NBForm.**
+
+Copyright © 2026 NBForm. Forks, modifications, and redistribution are allowed under GPL-2.0-or-later. Modified versions may credit their contributors while retaining the copyright and license notices that apply to the original version and documenting their own changes.
 
 ## Installation
 
-1. Copier le dossier `wp-start-menu` dans `wp-content/plugins/`.
-2. Activer **NB Menu démarrer WP** depuis la page Extensions.
-3. Ouvrir une page de l’administration et cliquer sur **Démarrer** en bas à gauche.
+1. Copy the `wp-start-menu` directory to `wp-content/plugins/`.
+2. Activate **NB Menu démarrer WP** from the Plugins screen.
+3. Open any administration screen and select **Start** at the bottom left.
 
-La dernière archive prête à installer est publiée dans les [releases GitHub](https://github.com/nicolasbel34000-glitch/nb-menu-demarrer-wp/releases).
+The latest installable archive is available from [GitHub Releases](https://github.com/nicolasbel34000-glitch/nb-menu-demarrer-wp/releases).
 
-## Utilisation
+## Usage
 
-Le bouton **Organiser** active les actions de personnalisation :
+Select **Organize** to customize the launcher:
 
-- faire glisser les favoris pour les classer ;
-- cliquer sur l’étoile d’une application dans A–Z pour l’ajouter ou la retirer des favoris ;
-- utiliser « Ajouter une URL » pour créer, modifier ou supprimer un raccourci personnel ;
-- créer un dossier, puis y déposer des applications ;
-- ouvrir un dossier pour renommer, supprimer ou retirer des éléments.
+- drag favorites to reorder them;
+- select an application’s star in A–Z to add it to or remove it from favorites;
+- use “Add a URL” to create, edit, or delete a personal shortcut;
+- create a folder, then drag applications into it;
+- open a folder to rename or delete it, or remove its items.
 
-Les changements sont sauvegardés automatiquement dans les métadonnées du compte WordPress connecté.
+Changes are saved automatically in the metadata of the connected WordPress account.
 
-## Droits et confidentialité
+## Languages
 
-- chaque utilisateur ne voit que les menus déjà autorisés par ses capacités WordPress ;
-- le plugin n’accorde aucun nouveau droit et ne modifie aucun rôle ;
-- l’organisation est enregistrée séparément dans les métadonnées du compte connecté ;
-- aucune donnée n’est transmise à NBForm ou à un service tiers ;
-- aucun cookie, aucune télémétrie et aucun système de suivi ne sont ajoutés ;
-- la désinstallation supprime les préférences enregistrées par le plugin.
+The interface automatically follows the WordPress site language:
+
+- English: source language;
+- French: bundled translation.
+
+## Permissions and privacy
+
+- users only see menus allowed by their existing WordPress capabilities;
+- the plugin grants no new permission and changes no role;
+- each layout is stored separately in the connected account’s metadata;
+- no data is sent to NBForm or any third-party service;
+- no cookie, telemetry, or tracking system is added;
+- uninstalling the plugin removes the preferences it stored.
 
 ## Architecture
 
-Le projet reste volontairement compact et sans dépendance d’exécution :
+The project intentionally remains compact and has no runtime dependency:
 
 ```text
-wp-start-menu.php                 charge l’extension
-includes/class-wp-start-menu.php logique WordPress, droits et sauvegarde
-assets/admin.js                  interactions du lanceur
-assets/admin.css                 présentation responsive
-languages/                       catalogue de traduction
-uninstall.php                    nettoyage à la désinstallation
+wp-start-menu.php                 plugin bootstrap
+includes/class-wp-start-menu.php WordPress logic, permissions, and persistence
+assets/admin.js                  launcher interactions
+assets/admin.css                 responsive presentation
+languages/                       translation template and French translation
+uninstall.php                    uninstall cleanup
 ```
 
-Cette séparation permet de maintenir chaque responsabilité sans multiplier artificiellement les fichiers.
+## Development
 
-## Développement
-
-Le plugin n’a aucune dépendance de compilation : PHP, CSS et JavaScript natif uniquement.
+The plugin has no build dependency: it uses native PHP, CSS, and JavaScript only.
 
 ```bash
 php -l wp-start-menu.php
@@ -87,10 +94,10 @@ php tools/check-release.php
 composer phpcs
 ```
 
-La CI teste PHP 7.4, 8.3 et 8.4. Un tag `vX.Y.Z` produit automatiquement une archive installable et sa somme SHA-256.
+CI checks PHP 7.4, 8.3, and 8.4. A `vX.Y.Z` tag automatically produces an installable archive and its SHA-256 checksum.
 
-Consultez également [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) et [CHANGELOG.md](CHANGELOG.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and [CHANGELOG.md](CHANGELOG.md).
 
-## Licence
+## License
 
-GPL-2.0-or-later. Consultez `LICENSE` pour le texte intégral et `NOTICE` pour l’attribution d’origine.
+GPL-2.0-or-later. See `LICENSE` for the full license and `NOTICE` for original attribution.

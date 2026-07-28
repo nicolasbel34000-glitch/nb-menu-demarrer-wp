@@ -4,87 +4,71 @@ Tags: admin, dashboard, menu, launcher, productivity
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Un menu Démarrer organisable pour l’administration WordPress : favoris, dossiers, recherche et liste A–Z.
+An organized Start menu for WordPress administration with favorites, folders, search, and an A–Z index.
 
 == Description ==
 
-NB Menu démarrer WP ajoute une surcouche d’organisation sans remplacer le menu WordPress d’origine.
+NB Menu démarrer WP adds a personal organization layer without replacing the native WordPress menu.
 
-NB Menu démarrer WP a été créé initialement par NBForm. Copyright 2026 NBForm. Les forks et modifications sont autorisés selon la GPLv2 ou toute version ultérieure ; les contributeurs peuvent être crédités pour leurs propres modifications sans effacer l’attribution de la version originale.
+NB Menu démarrer WP was originally created by NBForm. Copyright 2026 NBForm. Forks and modifications are permitted under GPLv2 or any later version. Contributors may be credited for their own changes without removing the original version’s attribution.
 
-* Favoris ordonnables.
-* Dossiers personnels.
-* Raccourcis personnalisés vers des URL internes ou externes.
-* Recherche dans les menus et sous-menus accessibles.
-* Liste alphabétique des entrées principales uniquement.
-* Préférences enregistrées par utilisateur.
-* Interface accessible et responsive.
-* Aucun service tiers, aucune télémétrie et aucune dépendance d'exécution.
+* Sortable favorites.
+* Personal folders.
+* Custom shortcuts to internal or external URLs.
+* Search across accessible menus and submenus.
+* Alphabetical list of top-level entries.
+* Per-user preferences.
+* Accessible and responsive interface.
+* No third-party service, telemetry, or runtime dependency.
+* English interface with a bundled French translation.
 
-Les préférences sont propres à chaque compte. Le plugin respecte les droits WordPress existants et n'accorde aucune capacité supplémentaire.
+Preferences are specific to each account. The plugin respects existing WordPress permissions and grants no additional capability.
 
 == Installation ==
 
-1. Téléversez le dossier dans `/wp-content/plugins/`.
-2. Activez le plugin depuis la page Extensions.
-3. Utilisez le bouton Démarrer en bas à gauche de l’administration.
+1. Upload the plugin folder to `/wp-content/plugins/`.
+2. Activate the plugin from the Plugins screen.
+3. Use the Start button at the bottom left of the administration menu.
 
 == Frequently Asked Questions ==
 
-= Le plugin remplace-t-il le menu WordPress ? =
+= Does the plugin replace the WordPress menu? =
 
-Non. Le menu natif reste intact et utilisable.
+No. The native menu remains intact and available.
 
-= Pourquoi certains éléments n’apparaissent-ils pas ? =
+= Why are some items missing? =
 
-Le lanceur respecte les droits du compte connecté et ne montre que les menus auxquels ce compte a accès.
+The launcher respects the connected account’s permissions and only displays menus that account can access.
 
-= La liste A–Z contient-elle les sous-menus ? =
+= Does the A–Z list contain submenus? =
 
-Non. Elle contient uniquement les entrées principales. Les sous-menus restent accessibles depuis les applications et la recherche.
+No. It contains top-level entries only. Submenus remain available from applications and search.
+
+= Which languages are available? =
+
+English is the source language. A complete French translation is bundled and automatically follows the WordPress site language.
 
 == Changelog ==
 
+= 1.1.0 =
+
+* English is now the plugin source language.
+* A complete French translation is bundled.
+* English and French documentation are available on GitHub.
+
 = 1.0.1 =
 
-* L’extension porte désormais le nom NB Menu démarrer WP.
-* Les pages, la documentation, les archives et les liens GitHub utilisent la nouvelle identité.
-* Les identifiants techniques existants restent compatibles avec les installations et préférences déjà enregistrées.
+* The plugin was renamed NB Menu démarrer WP.
+* Pages, documentation, archives, and GitHub links use the new identity.
+* Existing technical identifiers remain compatible with installed copies and saved preferences.
 
 = 1.0.0 =
 
-* Première version stable destinée à une diffusion publique.
-* Tous les textes dynamiques utilisent le système de traduction WordPress.
-* Ajout de contrôles automatisés de compatibilité, de sécurité, de poids et de cohérence.
-* Ajout d'une génération reproductible du ZIP installable depuis les tags GitHub.
-
-= 0.2.2 =
-
-* Les sous-menus s’alignent vers l’intérieur du lanceur pour rester entièrement visibles sur toutes les tailles d’écran.
-
-= 0.2.1 =
-
-* Le lanceur reste ouvert lorsqu’un favori est ajouté ou retiré depuis une vue reconstruite dynamiquement.
-
-= 0.2.0 =
-
-* Correction de la persistance des favoris et dossiers pendant les requêtes AJAX.
-* Ajout de raccourcis URL personnalisés, modifiables et utilisables dans les favoris et dossiers.
-* Sauvegarde renforcée lors d’un changement de page.
-
-= 0.1.2 =
-
-* Le bouton Démarrer reste visible en permanence en bas de la colonne WordPress sans recouvrir les autres liens.
-
-= 0.1.1 =
-
-* Le lanceur devient une surcouche non modale et ne bloque plus les liens de l’administration.
-* Le bouton Démarrer est intégré au menu WordPress au lieu de recouvrir son contenu.
-
-= 0.1.0 =
-
-* Première version fonctionnelle.
+* First stable public release.
+* All dynamic interface strings use the WordPress translation system.
+* Automated compatibility, security, size, and consistency checks.
+* Reproducible installable ZIP archives generated from GitHub tags.

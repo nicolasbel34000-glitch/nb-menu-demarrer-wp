@@ -4,6 +4,19 @@ Toutes les modifications notables de NB Menu démarrer WP sont documentées ici.
 
 Le projet suit la numérotation [Semantic Versioning](https://semver.org/lang/fr/).
 
+## [1.1.0] - 2026-07-28
+
+### Ajouté
+
+- anglais défini comme langue source de l’extension, conformément aux pratiques WordPress ;
+- traduction française complète fournie dans l’archive ;
+- documentation GitHub disponible en anglais et en français.
+
+### Compatibilité
+
+- aucun identifiant technique ni aucune préférence enregistrée n’est modifié ;
+- les sites configurés en français conservent automatiquement l’interface française.
+
 ## [1.0.1] - 2026-07-28
 
 ### Modifié

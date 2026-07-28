@@ -115,65 +115,65 @@ final class WP_Start_Menu {
 				'nonce'  => wp_create_nonce( self::NONCE_ACTION ),
 			),
 			'i18n'   => array(
-				'organize'             => __( 'Organiser', 'wp-start-menu' ),
-				'done'                 => __( 'Terminer', 'wp-start-menu' ),
-				'favorites'            => __( 'Favoris', 'wp-start-menu' ),
-				'favoritesDescription' => __( 'Glissez les icônes pour définir leur ordre de priorité.', 'wp-start-menu' ),
-				'addUrl'               => __( 'Ajouter une URL', 'wp-start-menu' ),
-				'emptyFavorites'       => __( 'Ajoutez une application depuis A–Z ou créez un raccourci URL.', 'wp-start-menu' ),
-				'customShortcuts'      => __( 'Raccourcis personnalisés', 'wp-start-menu' ),
-				'customShortcutsHelp'  => __( 'Ajoutez-les aux favoris ou glissez-les dans un dossier.', 'wp-start-menu' ),
-				'folders'              => __( 'Dossiers', 'wp-start-menu' ),
-				'folderDropHelp'       => __( 'Déposez une application sur un dossier.', 'wp-start-menu' ),
-				'foldersDescription'   => __( 'Regroupez librement les applications et leurs raccourcis.', 'wp-start-menu' ),
-				'newFolderButton'      => __( 'Nouveau dossier', 'wp-start-menu' ),
-				'emptyFolders'         => __( 'Aucun dossier pour le moment.', 'wp-start-menu' ),
-				'availableApps'        => __( 'Applications disponibles', 'wp-start-menu' ),
-				'availableAppsHelp'    => __( 'Glissez une application vers le dossier souhaité.', 'wp-start-menu' ),
-				'alphaNote'            => __( 'Entrées principales uniquement — sous-menus exclus', 'wp-start-menu' ),
-				'results'              => __( 'Résultats', 'wp-start-menu' ),
-				'result'               => __( 'résultat', 'wp-start-menu' ),
-				'resultsCount'         => __( 'résultats', 'wp-start-menu' ),
+				'organize'             => __( 'Organize', 'wp-start-menu' ),
+				'done'                 => __( 'Done', 'wp-start-menu' ),
+				'favorites'            => __( 'Favorites', 'wp-start-menu' ),
+				'favoritesDescription' => __( 'Drag icons to set their priority order.', 'wp-start-menu' ),
+				'addUrl'               => __( 'Add a URL', 'wp-start-menu' ),
+				'emptyFavorites'       => __( 'Add an application from A–Z or create a URL shortcut.', 'wp-start-menu' ),
+				'customShortcuts'      => __( 'Custom shortcuts', 'wp-start-menu' ),
+				'customShortcutsHelp'  => __( 'Add them to favorites or drag them into a folder.', 'wp-start-menu' ),
+				'folders'              => __( 'Folders', 'wp-start-menu' ),
+				'folderDropHelp'       => __( 'Drop an application onto a folder.', 'wp-start-menu' ),
+				'foldersDescription'   => __( 'Group applications and their shortcuts freely.', 'wp-start-menu' ),
+				'newFolderButton'      => __( 'New folder', 'wp-start-menu' ),
+				'emptyFolders'         => __( 'No folders yet.', 'wp-start-menu' ),
+				'availableApps'        => __( 'Available applications', 'wp-start-menu' ),
+				'availableAppsHelp'    => __( 'Drag an application to the desired folder.', 'wp-start-menu' ),
+				'alphaNote'            => __( 'Top-level entries only — submenus excluded', 'wp-start-menu' ),
+				'results'              => __( 'Results', 'wp-start-menu' ),
+				'result'               => __( 'result', 'wp-start-menu' ),
+				'resultsCount'         => __( 'results', 'wp-start-menu' ),
 				'application'          => __( 'application', 'wp-start-menu' ),
 				'applications'         => __( 'applications', 'wp-start-menu' ),
-				'emptySearch'          => __( 'Aucun résultat.', 'wp-start-menu' ),
-				'emptyFolder'          => __( 'Ce dossier est vide.', 'wp-start-menu' ),
-				'saving'               => __( 'Enregistrement…', 'wp-start-menu' ),
-				'saved'                => __( 'Organisation enregistrée.', 'wp-start-menu' ),
-				'saveError'            => __( 'Impossible d’enregistrer.', 'wp-start-menu' ),
-				'removeFavorite'       => __( 'Retirer des favoris', 'wp-start-menu' ),
-				'addFavorite'          => __( 'Ajouter aux favoris', 'wp-start-menu' ),
-				'openSubmenu'          => __( 'Afficher les sous-menus', 'wp-start-menu' ),
-				'removeFromFolder'     => __( 'Retirer du dossier', 'wp-start-menu' ),
-				'newFolder'            => __( 'Nom du nouveau dossier', 'wp-start-menu' ),
-				'renameFolder'         => __( 'Renommer le dossier', 'wp-start-menu' ),
-				'deleteFolder'         => __( 'Supprimer ce dossier ?', 'wp-start-menu' ),
-				'shortcutName'         => __( 'Nom du raccourci', 'wp-start-menu' ),
-				'shortcutUrl'          => __( 'Adresse du raccourci', 'wp-start-menu' ),
-				'invalidUrl'           => __( 'Cette adresse n’est pas valide.', 'wp-start-menu' ),
-				'deleteShortcut'       => __( 'Supprimer ce raccourci ?', 'wp-start-menu' ),
-				'editShortcut'         => __( 'Modifier le raccourci', 'wp-start-menu' ),
+				'emptySearch'          => __( 'No results.', 'wp-start-menu' ),
+				'emptyFolder'          => __( 'This folder is empty.', 'wp-start-menu' ),
+				'saving'               => __( 'Saving…', 'wp-start-menu' ),
+				'saved'                => __( 'Layout saved.', 'wp-start-menu' ),
+				'saveError'            => __( 'Unable to save.', 'wp-start-menu' ),
+				'removeFavorite'       => __( 'Remove from favorites', 'wp-start-menu' ),
+				'addFavorite'          => __( 'Add to favorites', 'wp-start-menu' ),
+				'openSubmenu'          => __( 'Show submenus', 'wp-start-menu' ),
+				'removeFromFolder'     => __( 'Remove from folder', 'wp-start-menu' ),
+				'newFolder'            => __( 'New folder name', 'wp-start-menu' ),
+				'renameFolder'         => __( 'Rename folder', 'wp-start-menu' ),
+				'deleteFolder'         => __( 'Delete this folder?', 'wp-start-menu' ),
+				'shortcutName'         => __( 'Shortcut name', 'wp-start-menu' ),
+				'shortcutUrl'          => __( 'Shortcut address', 'wp-start-menu' ),
+				'invalidUrl'           => __( 'This address is not valid.', 'wp-start-menu' ),
+				'deleteShortcut'       => __( 'Delete this shortcut?', 'wp-start-menu' ),
+				'editShortcut'         => __( 'Edit shortcut', 'wp-start-menu' ),
 			),
 		);
 		?>
 		<div id="wpsm-root" class="wpsm-root" data-version="<?php echo esc_attr( WPSM_VERSION ); ?>">
 			<button type="button" id="wpsm-trigger" class="wpsm-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="wpsm-panel">
 				<span class="wpsm-trigger-grid" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-				<span class="wpsm-trigger-label"><?php esc_html_e( 'Démarrer', 'wp-start-menu' ); ?></span>
+				<span class="wpsm-trigger-label"><?php esc_html_e( 'Start', 'wp-start-menu' ); ?></span>
 			</button>
 
 			<section id="wpsm-panel" class="wpsm-panel" role="dialog" aria-modal="false" aria-labelledby="wpsm-title" hidden>
 				<header class="wpsm-header">
 					<div>
-						<h2 id="wpsm-title"><?php esc_html_e( 'Mes applications', 'wp-start-menu' ); ?></h2>
-						<p><?php esc_html_e( 'Votre espace de travail WordPress', 'wp-start-menu' ); ?></p>
+						<h2 id="wpsm-title"><?php esc_html_e( 'My applications', 'wp-start-menu' ); ?></h2>
+						<p><?php esc_html_e( 'Your WordPress workspace', 'wp-start-menu' ); ?></p>
 					</div>
 					<div class="wpsm-header-actions">
 						<button type="button" class="wpsm-button wpsm-organize" aria-pressed="false">
 							<span class="dashicons dashicons-edit" aria-hidden="true"></span>
-							<span><?php esc_html_e( 'Organiser', 'wp-start-menu' ); ?></span>
+							<span><?php esc_html_e( 'Organize', 'wp-start-menu' ); ?></span>
 						</button>
-						<button type="button" class="wpsm-icon-button wpsm-close" aria-label="<?php esc_attr_e( 'Fermer', 'wp-start-menu' ); ?>">
+						<button type="button" class="wpsm-icon-button wpsm-close" aria-label="<?php esc_attr_e( 'Close', 'wp-start-menu' ); ?>">
 							<span class="dashicons dashicons-no-alt" aria-hidden="true"></span>
 						</button>
 					</div>
@@ -181,14 +181,14 @@ final class WP_Start_Menu {
 
 				<label class="wpsm-search-wrap">
 					<span class="dashicons dashicons-search" aria-hidden="true"></span>
-					<span class="screen-reader-text"><?php esc_html_e( 'Rechercher', 'wp-start-menu' ); ?></span>
-					<input id="wpsm-search" type="search" autocomplete="off" placeholder="<?php esc_attr_e( 'Rechercher une action, une page ou une extension…', 'wp-start-menu' ); ?>">
+					<span class="screen-reader-text"><?php esc_html_e( 'Search', 'wp-start-menu' ); ?></span>
+					<input id="wpsm-search" type="search" autocomplete="off" placeholder="<?php esc_attr_e( 'Search for an action, page, or plugin…', 'wp-start-menu' ); ?>">
 					<kbd>Ctrl K</kbd>
 				</label>
 
-				<nav class="wpsm-tabs" aria-label="<?php esc_attr_e( 'Vues du menu Démarrer', 'wp-start-menu' ); ?>">
-					<button type="button" role="tab" id="wpsm-tab-favorites" aria-selected="true" aria-controls="wpsm-view-favorites" data-view="favorites"><?php esc_html_e( 'Favoris', 'wp-start-menu' ); ?></button>
-					<button type="button" role="tab" id="wpsm-tab-folders" aria-selected="false" aria-controls="wpsm-view-folders" data-view="folders"><?php esc_html_e( 'Dossiers', 'wp-start-menu' ); ?></button>
+				<nav class="wpsm-tabs" aria-label="<?php esc_attr_e( 'Start menu views', 'wp-start-menu' ); ?>">
+					<button type="button" role="tab" id="wpsm-tab-favorites" aria-selected="true" aria-controls="wpsm-view-favorites" data-view="favorites"><?php esc_html_e( 'Favorites', 'wp-start-menu' ); ?></button>
+					<button type="button" role="tab" id="wpsm-tab-folders" aria-selected="false" aria-controls="wpsm-view-folders" data-view="folders"><?php esc_html_e( 'Folders', 'wp-start-menu' ); ?></button>
 					<button type="button" role="tab" id="wpsm-tab-alpha" aria-selected="false" aria-controls="wpsm-view-alpha" data-view="alpha"><?php esc_html_e( 'A–Z', 'wp-start-menu' ); ?></button>
 				</nav>
 
@@ -201,7 +201,7 @@ final class WP_Start_Menu {
 
 				<footer class="wpsm-footer">
 					<span class="wpsm-status" role="status"></span>
-					<button type="button" class="wpsm-all-apps"><?php esc_html_e( 'Toutes les applications', 'wp-start-menu' ); ?><span class="dashicons dashicons-arrow-right-alt2" aria-hidden="true"></span></button>
+					<button type="button" class="wpsm-all-apps"><?php esc_html_e( 'All applications', 'wp-start-menu' ); ?><span class="dashicons dashicons-arrow-right-alt2" aria-hidden="true"></span></button>
 				</footer>
 			</section>
 		</div>
@@ -395,7 +395,7 @@ final class WP_Start_Menu {
 		$folders = array(
 			array(
 				'id'    => 'content',
-				'name'  => __( 'Contenu', 'wp-start-menu' ),
+				'name'  => __( 'Content', 'wp-start-menu' ),
 				'items' => array_values( array_unique( $content ) ),
 			),
 			array(
@@ -414,7 +414,7 @@ final class WP_Start_Menu {
 		if ( $shop ) {
 			$folders[] = array(
 				'id'    => 'shop',
-				'name'  => __( 'Boutique', 'wp-start-menu' ),
+				'name'  => __( 'Store', 'wp-start-menu' ),
 				'items' => array_values( array_unique( $shop ) ),
 			);
 		}
@@ -523,17 +523,17 @@ final class WP_Start_Menu {
 		check_ajax_referer( self::NONCE_ACTION, 'nonce' );
 
 		if ( ! is_user_logged_in() || ! current_user_can( 'read' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Session expirée.', 'wp-start-menu' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'Session expired.', 'wp-start-menu' ) ), 403 );
 		}
 
 		$raw = isset( $_POST['layout'] ) ? wp_unslash( $_POST['layout'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if ( ! is_string( $raw ) || strlen( $raw ) > 50000 ) {
-			wp_send_json_error( array( 'message' => __( 'Données invalides.', 'wp-start-menu' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Invalid data.', 'wp-start-menu' ) ), 400 );
 		}
 
 		$layout = json_decode( $raw, true );
 		if ( ! is_array( $layout ) ) {
-			wp_send_json_error( array( 'message' => __( 'Données invalides.', 'wp-start-menu' ) ), 400 );
+			wp_send_json_error( array( 'message' => __( 'Invalid data.', 'wp-start-menu' ) ), 400 );
 		}
 
 		// admin-ajax.php does not build the global WordPress admin menu. App IDs
@@ -564,6 +564,6 @@ final class WP_Start_Menu {
 			)
 		);
 
-		wp_send_json_success( array( 'message' => __( 'Organisation enregistrée.', 'wp-start-menu' ) ) );
+		wp_send_json_success( array( 'message' => __( 'Layout saved.', 'wp-start-menu' ) ) );
 	}
 }
