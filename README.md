@@ -2,6 +2,8 @@
 
 WP Start Menu ajoute un lanceur d’applications organisable à l’administration WordPress sans remplacer le menu natif.
 
+**Version stable : 1.0.0 — GPL-2.0-or-later**
+
 ## Fonctionnalités
 
 - bouton **Démarrer** persistant en bas de l’administration ;
@@ -16,6 +18,13 @@ WP Start Menu ajoute un lanceur d’applications organisable à l’administrati
 
 Le plugin ne modifie ni l’ordre ni la visibilité du menu WordPress d’origine. Il construit son lanceur à partir des pages auxquelles l’utilisateur courant a déjà accès.
 
+## Prérequis
+
+- WordPress 6.5 ou plus récent ;
+- PHP 7.4 ou plus récent ;
+- JavaScript activé dans le navigateur ;
+- un compte autorisé à accéder à l’administration WordPress.
+
 ## Auteur original et forks
 
 **WP Start Menu a été créé initialement par NBForm.**
@@ -27,6 +36,8 @@ Copyright © 2026 NBForm. Les forks, modifications et redistributions sont autor
 1. Copier le dossier `wp-start-menu` dans `wp-content/plugins/`.
 2. Activer **WP Start Menu** depuis la page Extensions.
 3. Ouvrir une page de l’administration et cliquer sur **Démarrer** en bas à gauche.
+
+La dernière archive prête à installer est publiée dans les [releases GitHub](https://github.com/nicolasbel34000-glitch/wp-start-menu/releases).
 
 ## Utilisation
 
@@ -40,6 +51,30 @@ Le bouton **Organiser** active les actions de personnalisation :
 
 Les changements sont sauvegardés automatiquement dans les métadonnées du compte WordPress connecté.
 
+## Droits et confidentialité
+
+- chaque utilisateur ne voit que les menus déjà autorisés par ses capacités WordPress ;
+- le plugin n’accorde aucun nouveau droit et ne modifie aucun rôle ;
+- l’organisation est enregistrée séparément dans les métadonnées du compte connecté ;
+- aucune donnée n’est transmise à NBForm ou à un service tiers ;
+- aucun cookie, aucune télémétrie et aucun système de suivi ne sont ajoutés ;
+- la désinstallation supprime les préférences enregistrées par le plugin.
+
+## Architecture
+
+Le projet reste volontairement compact et sans dépendance d’exécution :
+
+```text
+wp-start-menu.php                 charge l’extension
+includes/class-wp-start-menu.php logique WordPress, droits et sauvegarde
+assets/admin.js                  interactions du lanceur
+assets/admin.css                 présentation responsive
+languages/                       catalogue de traduction
+uninstall.php                    nettoyage à la désinstallation
+```
+
+Cette séparation permet de maintenir chaque responsabilité sans multiplier artificiellement les fichiers.
+
 ## Développement
 
 Le plugin n’a aucune dépendance de compilation : PHP, CSS et JavaScript natif uniquement.
@@ -48,7 +83,13 @@ Le plugin n’a aucune dépendance de compilation : PHP, CSS et JavaScript natif
 php -l wp-start-menu.php
 php -l includes/class-wp-start-menu.php
 node --check assets/admin.js
+php tools/check-release.php
+composer phpcs
 ```
+
+La CI teste PHP 7.4, 8.3 et 8.4. Un tag `vX.Y.Z` produit automatiquement une archive installable et sa somme SHA-256.
+
+Consultez également [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md) et [CHANGELOG.md](CHANGELOG.md).
 
 ## Licence
 

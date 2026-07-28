@@ -11,14 +11,25 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * Build and persist the current user's administration launcher.
+ */
 final class WP_Start_Menu {
 	const USER_META_KEY = '_wpsm_layout';
-	const NONCE_ACTION   = 'wpsm_save_layout';
+	const NONCE_ACTION  = 'wpsm_save_layout';
 
-	/** @var self|null */
+	/**
+	 * Singleton instance.
+	 *
+	 * @var self|null
+	 */
 	private static $instance = null;
 
-	/** @var array<int,array<string,mixed>> */
+	/**
+	 * Applications visible to the current user.
+	 *
+	 * @var array<int,array<string,mixed>>
+	 */
 	private $apps = array();
 
 	/**
@@ -34,10 +45,27 @@ final class WP_Start_Menu {
 		return self::$instance;
 	}
 
+	/**
+	 * Register WordPress hooks.
+	 */
 	private function __construct() {
+		add_action( 'init', array( $this, 'load_textdomain' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_action( 'admin_footer', array( $this, 'render_launcher' ) );
 		add_action( 'wp_ajax_wpsm_save_layout', array( $this, 'save_layout' ) );
+	}
+
+	/**
+	 * Load translations bundled with the plugin.
+	 *
+	 * @return void
+	 */
+	public function load_textdomain() {
+		load_plugin_textdomain(
+			'wp-start-menu',
+			false,
+			dirname( plugin_basename( WPSM_FILE ) ) . '/languages'
+		);
 	}
 
 	/**
@@ -82,26 +110,49 @@ final class WP_Start_Menu {
 			'apps'   => $this->apps,
 			'layout' => $layout,
 			'ajax'   => array(
-				'url'   => admin_url( 'admin-ajax.php' ),
+				'url'    => admin_url( 'admin-ajax.php' ),
 				'action' => 'wpsm_save_layout',
-				'nonce' => wp_create_nonce( self::NONCE_ACTION ),
+				'nonce'  => wp_create_nonce( self::NONCE_ACTION ),
 			),
 			'i18n'   => array(
-				'emptySearch'   => __( 'Aucun résultat.', 'wp-start-menu' ),
-				'emptyFolder'   => __( 'Ce dossier est vide.', 'wp-start-menu' ),
-				'saved'         => __( 'Organisation enregistrée.', 'wp-start-menu' ),
-				'saveError'     => __( 'Impossible d’enregistrer.', 'wp-start-menu' ),
-				'removeFavorite'=> __( 'Retirer des favoris', 'wp-start-menu' ),
-				'addFavorite'   => __( 'Ajouter aux favoris', 'wp-start-menu' ),
-				'openSubmenu'   => __( 'Afficher les sous-menus', 'wp-start-menu' ),
-				'newFolder'     => __( 'Nom du nouveau dossier', 'wp-start-menu' ),
-				'renameFolder'  => __( 'Renommer le dossier', 'wp-start-menu' ),
-				'deleteFolder'  => __( 'Supprimer ce dossier ?', 'wp-start-menu' ),
-				'shortcutName'  => __( 'Nom du raccourci', 'wp-start-menu' ),
-				'shortcutUrl'   => __( 'Adresse du raccourci', 'wp-start-menu' ),
-				'invalidUrl'    => __( 'Cette adresse n’est pas valide.', 'wp-start-menu' ),
-				'deleteShortcut' => __( 'Supprimer ce raccourci ?', 'wp-start-menu' ),
-				'editShortcut'  => __( 'Modifier le raccourci', 'wp-start-menu' ),
+				'organize'             => __( 'Organiser', 'wp-start-menu' ),
+				'done'                 => __( 'Terminer', 'wp-start-menu' ),
+				'favorites'            => __( 'Favoris', 'wp-start-menu' ),
+				'favoritesDescription' => __( 'Glissez les icônes pour définir leur ordre de priorité.', 'wp-start-menu' ),
+				'addUrl'               => __( 'Ajouter une URL', 'wp-start-menu' ),
+				'emptyFavorites'       => __( 'Ajoutez une application depuis A–Z ou créez un raccourci URL.', 'wp-start-menu' ),
+				'customShortcuts'      => __( 'Raccourcis personnalisés', 'wp-start-menu' ),
+				'customShortcutsHelp'  => __( 'Ajoutez-les aux favoris ou glissez-les dans un dossier.', 'wp-start-menu' ),
+				'folders'              => __( 'Dossiers', 'wp-start-menu' ),
+				'folderDropHelp'       => __( 'Déposez une application sur un dossier.', 'wp-start-menu' ),
+				'foldersDescription'   => __( 'Regroupez librement les applications et leurs raccourcis.', 'wp-start-menu' ),
+				'newFolderButton'      => __( 'Nouveau dossier', 'wp-start-menu' ),
+				'emptyFolders'         => __( 'Aucun dossier pour le moment.', 'wp-start-menu' ),
+				'availableApps'        => __( 'Applications disponibles', 'wp-start-menu' ),
+				'availableAppsHelp'    => __( 'Glissez une application vers le dossier souhaité.', 'wp-start-menu' ),
+				'alphaNote'            => __( 'Entrées principales uniquement — sous-menus exclus', 'wp-start-menu' ),
+				'results'              => __( 'Résultats', 'wp-start-menu' ),
+				'result'               => __( 'résultat', 'wp-start-menu' ),
+				'resultsCount'         => __( 'résultats', 'wp-start-menu' ),
+				'application'          => __( 'application', 'wp-start-menu' ),
+				'applications'         => __( 'applications', 'wp-start-menu' ),
+				'emptySearch'          => __( 'Aucun résultat.', 'wp-start-menu' ),
+				'emptyFolder'          => __( 'Ce dossier est vide.', 'wp-start-menu' ),
+				'saving'               => __( 'Enregistrement…', 'wp-start-menu' ),
+				'saved'                => __( 'Organisation enregistrée.', 'wp-start-menu' ),
+				'saveError'            => __( 'Impossible d’enregistrer.', 'wp-start-menu' ),
+				'removeFavorite'       => __( 'Retirer des favoris', 'wp-start-menu' ),
+				'addFavorite'          => __( 'Ajouter aux favoris', 'wp-start-menu' ),
+				'openSubmenu'          => __( 'Afficher les sous-menus', 'wp-start-menu' ),
+				'removeFromFolder'     => __( 'Retirer du dossier', 'wp-start-menu' ),
+				'newFolder'            => __( 'Nom du nouveau dossier', 'wp-start-menu' ),
+				'renameFolder'         => __( 'Renommer le dossier', 'wp-start-menu' ),
+				'deleteFolder'         => __( 'Supprimer ce dossier ?', 'wp-start-menu' ),
+				'shortcutName'         => __( 'Nom du raccourci', 'wp-start-menu' ),
+				'shortcutUrl'          => __( 'Adresse du raccourci', 'wp-start-menu' ),
+				'invalidUrl'           => __( 'Cette adresse n’est pas valide.', 'wp-start-menu' ),
+				'deleteShortcut'       => __( 'Supprimer ce raccourci ?', 'wp-start-menu' ),
+				'editShortcut'         => __( 'Modifier le raccourci', 'wp-start-menu' ),
 			),
 		);
 		?>
@@ -172,7 +223,12 @@ final class WP_Start_Menu {
 		}
 
 		foreach ( $menu as $entry ) {
-			if ( empty( $entry[0] ) || empty( $entry[2] ) || ! empty( $entry[4] ) && false !== strpos( (string) $entry[4], 'wp-menu-separator' ) ) {
+			if ( empty( $entry[0] ) || empty( $entry[2] ) || ( ! empty( $entry[4] ) && false !== strpos( (string) $entry[4], 'wp-menu-separator' ) ) ) {
+				continue;
+			}
+
+			$capability = isset( $entry[1] ) ? (string) $entry[1] : '';
+			if ( '' !== $capability && ! current_user_can( $capability ) ) {
 				continue;
 			}
 
@@ -186,6 +242,11 @@ final class WP_Start_Menu {
 			if ( isset( $submenu[ $slug ] ) && is_array( $submenu[ $slug ] ) ) {
 				foreach ( $submenu[ $slug ] as $child ) {
 					if ( empty( $child[0] ) || empty( $child[2] ) ) {
+						continue;
+					}
+
+					$child_capability = isset( $child[1] ) ? (string) $child[1] : '';
+					if ( '' !== $child_capability && ! current_user_can( $child_capability ) ) {
 						continue;
 					}
 
@@ -226,10 +287,10 @@ final class WP_Start_Menu {
 	 * Build a safe admin URL from a menu slug.
 	 *
 	 * @param string $target Menu target.
-	 * @param string $parent Parent slug for plugin submenus.
+	 * @param string $parent_slug Parent slug for plugin submenus.
 	 * @return string
 	 */
-	private function menu_url( $target, $parent = '' ) {
+	private function menu_url( $target, $parent_slug = '' ) {
 		if ( preg_match( '#^https?://#i', $target ) ) {
 			return esc_url_raw( $target );
 		}
@@ -238,13 +299,13 @@ final class WP_Start_Menu {
 			return self_admin_url( ltrim( $target, '/' ) );
 		}
 
-		if ( $parent && false !== strpos( $parent, '.php' ) ) {
-			$parent_file = (string) wp_parse_url( $parent, PHP_URL_PATH );
+		if ( $parent_slug && false !== strpos( $parent_slug, '.php' ) ) {
+			$parent_file = (string) wp_parse_url( $parent_slug, PHP_URL_PATH );
 			if ( 'admin.php' === basename( $parent_file ) ) {
 				return self_admin_url( 'admin.php?page=' . rawurlencode( $target ) );
 			}
 
-			return self_admin_url( add_query_arg( 'page', $target, $parent ) );
+			return self_admin_url( add_query_arg( 'page', $target, $parent_slug ) );
 		}
 
 		return self_admin_url( 'admin.php?page=' . rawurlencode( $target ) );
@@ -292,7 +353,7 @@ final class WP_Start_Menu {
 
 		$shortcuts = $this->sanitize_shortcuts( isset( $stored['shortcuts'] ) ? $stored['shortcuts'] : array() );
 		$valid_ids = array_merge( $valid_ids, wp_list_pluck( $shortcuts, 'id' ) );
-		$favorites = isset( $stored['favorites'] ) && is_array( $stored['favorites'] ) ? $stored['favorites'] : array();
+		$favorites = isset( $stored['favorites'] ) && is_array( $stored['favorites'] ) ? array_slice( $stored['favorites'], 0, 200 ) : array();
 		$favorites = array_values( array_intersect( array_map( 'sanitize_key', $favorites ), $valid_ids ) );
 		$folders   = $this->sanitize_folders( isset( $stored['folders'] ) ? $stored['folders'] : array(), $valid_ids );
 
@@ -332,14 +393,30 @@ final class WP_Start_Menu {
 		}
 
 		$folders = array(
-			array( 'id' => 'content', 'name' => __( 'Contenu', 'wp-start-menu' ), 'items' => array_values( array_unique( $content ) ) ),
-			array( 'id' => 'administration', 'name' => __( 'Administration', 'wp-start-menu' ), 'items' => array_values( array_unique( $admin ) ) ),
+			array(
+				'id'    => 'content',
+				'name'  => __( 'Contenu', 'wp-start-menu' ),
+				'items' => array_values( array_unique( $content ) ),
+			),
+			array(
+				'id'    => 'administration',
+				'name'  => __( 'Administration', 'wp-start-menu' ),
+				'items' => array_values( array_unique( $admin ) ),
+			),
 		);
 		if ( $seo ) {
-			$folders[] = array( 'id' => 'seo', 'name' => 'SEO', 'items' => array_values( array_unique( $seo ) ) );
+			$folders[] = array(
+				'id'    => 'seo',
+				'name'  => 'SEO',
+				'items' => array_values( array_unique( $seo ) ),
+			);
 		}
 		if ( $shop ) {
-			$folders[] = array( 'id' => 'shop', 'name' => __( 'Boutique', 'wp-start-menu' ), 'items' => array_values( array_unique( $shop ) ) );
+			$folders[] = array(
+				'id'    => 'shop',
+				'name'  => __( 'Boutique', 'wp-start-menu' ),
+				'items' => array_values( array_unique( $shop ) ),
+			);
 		}
 
 		return array(
@@ -361,6 +438,7 @@ final class WP_Start_Menu {
 			return $clean;
 		}
 
+		$seen_ids = array();
 		foreach ( array_slice( $shortcuts, 0, 50 ) as $index => $shortcut ) {
 			if ( ! is_array( $shortcut ) || empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
 				continue;
@@ -376,6 +454,10 @@ final class WP_Start_Menu {
 			if ( ! preg_match( '/^shortcut_[a-z0-9_]{6,64}$/', $id ) ) {
 				$id = 'shortcut_' . substr( md5( $title . '|' . $url . '|' . $index ), 0, 12 );
 			}
+			if ( isset( $seen_ids[ $id ] ) ) {
+				continue;
+			}
+			$seen_ids[ $id ] = true;
 
 			$clean[] = array(
 				'id'    => $id,
@@ -406,9 +488,13 @@ final class WP_Start_Menu {
 				continue;
 			}
 
-			$name  = sanitize_text_field( $folder['name'] );
-			$items = isset( $folder['items'] ) && is_array( $folder['items'] ) ? $folder['items'] : array();
-			$items = array_values(
+			$name      = sanitize_text_field( $folder['name'] );
+			$folder_id = ! empty( $folder['id'] ) ? substr( sanitize_key( $folder['id'] ), 0, 64 ) : '';
+			if ( '' === $folder_id ) {
+				$folder_id = 'folder_' . wp_generate_password( 8, false, false );
+			}
+			$items   = isset( $folder['items'] ) && is_array( $folder['items'] ) ? array_slice( $folder['items'], 0, 200 ) : array();
+			$items   = array_values(
 				array_unique(
 					array_filter(
 						array_map( 'sanitize_key', $items ),
@@ -419,7 +505,7 @@ final class WP_Start_Menu {
 				)
 			);
 			$clean[] = array(
-				'id'    => ! empty( $folder['id'] ) ? sanitize_key( $folder['id'] ) : 'folder_' . wp_generate_password( 8, false, false ),
+				'id'    => $folder_id,
 				'name'  => function_exists( 'mb_substr' ) ? mb_substr( $name, 0, 40 ) : substr( $name, 0, 40 ),
 				'items' => $items,
 			);
@@ -436,7 +522,7 @@ final class WP_Start_Menu {
 	public function save_layout() {
 		check_ajax_referer( self::NONCE_ACTION, 'nonce' );
 
-		if ( ! is_user_logged_in() ) {
+		if ( ! is_user_logged_in() || ! current_user_can( 'read' ) ) {
 			wp_send_json_error( array( 'message' => __( 'Session expirée.', 'wp-start-menu' ) ), 403 );
 		}
 
@@ -455,8 +541,8 @@ final class WP_Start_Menu {
 		// then intersected with the user's actual visible menu on the next render.
 		$shortcuts    = $this->sanitize_shortcuts( isset( $layout['shortcuts'] ) ? $layout['shortcuts'] : array() );
 		$shortcut_ids = wp_list_pluck( $shortcuts, 'id' );
-		$favorites = isset( $layout['favorites'] ) && is_array( $layout['favorites'] ) ? $layout['favorites'] : array();
-		$favorites = array_values(
+		$favorites    = isset( $layout['favorites'] ) && is_array( $layout['favorites'] ) ? array_slice( $layout['favorites'], 0, 200 ) : array();
+		$favorites    = array_values(
 			array_unique(
 				array_filter(
 					array_map( 'sanitize_key', $favorites ),
@@ -466,7 +552,7 @@ final class WP_Start_Menu {
 				)
 			)
 		);
-		$folders = $this->sanitize_folders( isset( $layout['folders'] ) ? $layout['folders'] : array(), $shortcut_ids, true );
+		$folders      = $this->sanitize_folders( isset( $layout['folders'] ) ? $layout['folders'] : array(), $shortcut_ids, true );
 
 		update_user_meta(
 			get_current_user_id(),

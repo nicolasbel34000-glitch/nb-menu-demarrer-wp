@@ -1,0 +1,248 @@
+# Copyright (C) 2026 NBForm
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Start Menu 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-start-menu\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-28T06:52:40+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: wp-start-menu\n"
+
+#. Plugin Name of the plugin
+#: wp-start-menu.php
+msgid "WP Start Menu"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: wp-start-menu.php
+msgid "https://github.com/nicolasbel34000-glitch/wp-start-menu"
+msgstr ""
+
+#. Description of the plugin
+#: wp-start-menu.php
+msgid "Un lanceur d'applications organisable pour l'administration WordPress, avec favoris, dossiers, recherche et index alphabétique."
+msgstr ""
+
+#. Author of the plugin
+#: wp-start-menu.php
+msgid "NBForm"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:118
+#: includes/class-wp-start-menu.php:174
+msgid "Organiser"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:119
+msgid "Terminer"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:120
+#: includes/class-wp-start-menu.php:190
+msgid "Favoris"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:121
+msgid "Glissez les icônes pour définir leur ordre de priorité."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:122
+msgid "Ajouter une URL"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:123
+msgid "Ajoutez une application depuis A–Z ou créez un raccourci URL."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:124
+msgid "Raccourcis personnalisés"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:125
+msgid "Ajoutez-les aux favoris ou glissez-les dans un dossier."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:126
+#: includes/class-wp-start-menu.php:191
+msgid "Dossiers"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:127
+msgid "Déposez une application sur un dossier."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:128
+msgid "Regroupez librement les applications et leurs raccourcis."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:129
+msgid "Nouveau dossier"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:130
+msgid "Aucun dossier pour le moment."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:131
+msgid "Applications disponibles"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:132
+msgid "Glissez une application vers le dossier souhaité."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:133
+msgid "Entrées principales uniquement — sous-menus exclus"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:134
+msgid "Résultats"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:135
+msgid "résultat"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:136
+msgid "résultats"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:137
+msgid "application"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:138
+msgid "applications"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:139
+msgid "Aucun résultat."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:140
+msgid "Ce dossier est vide."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:141
+msgid "Enregistrement…"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:142
+#: includes/class-wp-start-menu.php:567
+msgid "Organisation enregistrée."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:143
+msgid "Impossible d’enregistrer."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:144
+msgid "Retirer des favoris"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:145
+msgid "Ajouter aux favoris"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:146
+msgid "Afficher les sous-menus"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:147
+msgid "Retirer du dossier"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:148
+msgid "Nom du nouveau dossier"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:149
+msgid "Renommer le dossier"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:150
+msgid "Supprimer ce dossier ?"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:151
+msgid "Nom du raccourci"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:152
+msgid "Adresse du raccourci"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:153
+msgid "Cette adresse n’est pas valide."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:154
+msgid "Supprimer ce raccourci ?"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:155
+msgid "Modifier le raccourci"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:162
+msgid "Démarrer"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:168
+msgid "Mes applications"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:169
+msgid "Votre espace de travail WordPress"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:176
+msgid "Fermer"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:184
+msgid "Rechercher"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:185
+msgid "Rechercher une action, une page ou une extension…"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:189
+msgid "Vues du menu Démarrer"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:192
+msgid "A–Z"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:204
+msgid "Toutes les applications"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:398
+msgid "Contenu"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:403
+msgid "Administration"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:417
+msgid "Boutique"
+msgstr ""
+
+#: includes/class-wp-start-menu.php:526
+msgid "Session expirée."
+msgstr ""
+
+#: includes/class-wp-start-menu.php:531
+#: includes/class-wp-start-menu.php:536
+msgid "Données invalides."
+msgstr ""
