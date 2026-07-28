@@ -1,6 +1,6 @@
 <?php
 /**
- * Remove WP Start Menu user preferences on uninstall.
+ * Remove NB Menu démarrer WP user preferences on uninstall.
  *
  * @package WP_Start_Menu
  */

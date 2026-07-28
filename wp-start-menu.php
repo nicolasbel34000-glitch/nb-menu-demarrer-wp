@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       WP Start Menu
- * Plugin URI:        https://github.com/nicolasbel34000-glitch/wp-start-menu
- * Description:       Un lanceur d'applications organisable pour l'administration WordPress, avec favoris, dossiers, recherche et index alphabétique.
- * Version:           1.0.0
+ * Plugin Name:       NB Menu démarrer WP
+ * Plugin URI:        https://github.com/nicolasbel34000-glitch/nb-menu-demarrer-wp
+ * Description:       Un menu Démarrer organisable pour l'administration WordPress, avec favoris, dossiers, recherche et index alphabétique.
+ * Version:           1.0.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            NBForm
@@ -18,7 +18,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WPSM_VERSION', '1.0.0' );
+define( 'WPSM_VERSION', '1.0.1' );
 define( 'WPSM_FILE', __FILE__ );
 define( 'WPSM_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WPSM_URL', plugin_dir_url( __FILE__ ) );

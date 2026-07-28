@@ -133,4 +133,4 @@ if ( $errors ) {
 	exit( 1 );
 }
 
-printf( "Contrôles de publication réussis pour WP Start Menu %s.%s", $version, PHP_EOL );
+printf( "Contrôles de publication réussis pour NB Menu démarrer WP %s.%s", $version, PHP_EOL );

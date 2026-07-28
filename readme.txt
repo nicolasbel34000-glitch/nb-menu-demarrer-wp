@@ -1,10 +1,10 @@
-=== WP Start Menu ===
+=== NB Menu démarrer WP ===
 Contributors: nbform
 Tags: admin, dashboard, menu, launcher, productivity
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,9 +12,9 @@ Un menu Démarrer organisable pour l’administration WordPress : favoris, dossi
 
 == Description ==
 
-WP Start Menu ajoute une surcouche d’organisation sans remplacer le menu WordPress d’origine.
+NB Menu démarrer WP ajoute une surcouche d’organisation sans remplacer le menu WordPress d’origine.
 
-WP Start Menu a été créé initialement par NBForm. Copyright 2026 NBForm. Les forks et modifications sont autorisés selon la GPLv2 ou toute version ultérieure ; les contributeurs peuvent être crédités pour leurs propres modifications sans effacer l’attribution de la version originale.
+NB Menu démarrer WP a été créé initialement par NBForm. Copyright 2026 NBForm. Les forks et modifications sont autorisés selon la GPLv2 ou toute version ultérieure ; les contributeurs peuvent être crédités pour leurs propres modifications sans effacer l’attribution de la version originale.
 
 * Favoris ordonnables.
 * Dossiers personnels.
@@ -48,6 +48,12 @@ Le lanceur respecte les droits du compte connecté et ne montre que les menus au
 Non. Elle contient uniquement les entrées principales. Les sous-menus restent accessibles depuis les applications et la recherche.
 
 == Changelog ==
+
+= 1.0.1 =
+
+* L’extension porte désormais le nom NB Menu démarrer WP.
+* Les pages, la documentation, les archives et les liens GitHub utilisent la nouvelle identité.
+* Les identifiants techniques existants restent compatibles avec les installations et préférences déjà enregistrées.
 
 = 1.0.0 =
 

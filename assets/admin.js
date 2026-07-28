@@ -1,5 +1,5 @@
 /**
- * WP Start Menu admin interactions.
+ * NB Menu démarrer WP admin interactions.
  * Copyright (C) 2026 NBForm. Original author: NBForm.
  * SPDX-License-Identifier: GPL-2.0-or-later
  */

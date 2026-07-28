@@ -42,7 +42,7 @@ jobs:
         run: |
           set -euo pipefail
           version="${GITHUB_REF_NAME#v}"
-          archive="wp-start-menu-${version}.zip"
+          archive="nb-menu-demarrer-wp-${version}.zip"
           git archive --format=zip --prefix=wp-start-menu/ --output="$archive" HEAD
           sha256sum "$archive" > "${archive}.sha256"
 
@@ -53,10 +53,10 @@ jobs:
         run: |
           set -euo pipefail
           version="${GITHUB_REF_NAME#v}"
-          archive="wp-start-menu-${version}.zip"
+          archive="nb-menu-demarrer-wp-${version}.zip"
           gh release create "$GITHUB_REF_NAME" \
             "$archive" \
             "${archive}.sha256" \
             --verify-tag \
             --generate-notes \
-            --title "WP Start Menu ${version}"
+            --title "NB Menu démarrer WP ${version}"

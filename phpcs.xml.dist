@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="WP Start Menu">
-	<description>WordPress coding standards for WP Start Menu.</description>
+<ruleset name="NB Menu démarrer WP">
+	<description>WordPress coding standards for NB Menu démarrer WP.</description>
 
 	<file>wp-start-menu.php</file>
 	<file>uninstall.php</file>

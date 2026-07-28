@@ -2,8 +2,8 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Start Menu 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-start-menu\n"
+"Project-Id-Version: NB Menu démarrer WP 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/nicolasbel34000-glitch/nb-menu-demarrer-wp/issues\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,12 +16,12 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: wp-start-menu.php
-msgid "WP Start Menu"
+msgid "NB Menu démarrer WP"
 msgstr ""
 
 #. Plugin URI of the plugin
 #: wp-start-menu.php
-msgid "https://github.com/nicolasbel34000-glitch/wp-start-menu"
+msgid "https://github.com/nicolasbel34000-glitch/nb-menu-demarrer-wp"
 msgstr ""
 
 #. Description of the plugin

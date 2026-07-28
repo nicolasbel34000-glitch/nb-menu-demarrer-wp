@@ -1,8 +1,8 @@
-# WP Start Menu
+# NB Menu démarrer WP
 
-WP Start Menu ajoute un lanceur d’applications organisable à l’administration WordPress sans remplacer le menu natif.
+NB Menu démarrer WP ajoute un lanceur d’applications organisable à l’administration WordPress sans remplacer le menu natif.
 
-**Version stable : 1.0.0 — GPL-2.0-or-later**
+**Version stable : 1.0.1 — GPL-2.0-or-later**
 
 ## Fonctionnalités
 
@@ -27,17 +27,17 @@ Le plugin ne modifie ni l’ordre ni la visibilité du menu WordPress d’origin
 
 ## Auteur original et forks
 
-**WP Start Menu a été créé initialement par NBForm.**
+**NB Menu démarrer WP a été créé initialement par NBForm.**
 
 Copyright © 2026 NBForm. Les forks, modifications et redistributions sont autorisés selon les conditions de la licence GPL-2.0-or-later. Les versions modifiées peuvent créditer leurs contributeurs, tout en conservant les mentions de copyright et de licence de la version originale et en signalant leurs propres modifications.
 
 ## Installation
 
 1. Copier le dossier `wp-start-menu` dans `wp-content/plugins/`.
-2. Activer **WP Start Menu** depuis la page Extensions.
+2. Activer **NB Menu démarrer WP** depuis la page Extensions.
 3. Ouvrir une page de l’administration et cliquer sur **Démarrer** en bas à gauche.
 
-La dernière archive prête à installer est publiée dans les [releases GitHub](https://github.com/nicolasbel34000-glitch/wp-start-menu/releases).
+La dernière archive prête à installer est publiée dans les [releases GitHub](https://github.com/nicolasbel34000-glitch/nb-menu-demarrer-wp/releases).
 
 ## Utilisation
 

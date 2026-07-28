@@ -1,8 +1,16 @@
 # Changelog
 
-Toutes les modifications notables de WP Start Menu sont documentées ici.
+Toutes les modifications notables de NB Menu démarrer WP sont documentées ici.
 
 Le projet suit la numérotation [Semantic Versioning](https://semver.org/lang/fr/).
+
+## [1.0.1] - 2026-07-28
+
+### Modifié
+
+- nouvelle identité publique : **NB Menu démarrer WP** ;
+- mise à jour de la documentation, des archives de publication et des liens GitHub ;
+- conservation des identifiants techniques historiques afin de préserver les installations et les préférences existantes.
 
 ## [1.0.0] - 2026-07-28
 

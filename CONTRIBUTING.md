@@ -1,4 +1,4 @@
-# Contribuer à WP Start Menu
+# Contribuer à NB Menu démarrer WP
 
 Merci de proposer les corrections dans une branche dédiée et une pull request ciblée.
 

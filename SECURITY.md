@@ -2,7 +2,7 @@
 
 ## Modèle de sécurité
 
-WP Start Menu est une interface locale à l’administration WordPress :
+NB Menu démarrer WP est une interface locale à l’administration WordPress :
 
 - il ne crée aucun compte et n’accorde aucune capacité ;
 - il revérifie les capacités WordPress avant d’exposer un menu ou un sous-menu ;
@@ -31,4 +31,4 @@ La publication est bloquée automatiquement si elle détecte un secret probable,
 
 ## Supported versions
 
-Security fixes are applied to the latest published release of WP Start Menu.
+Security fixes are applied to the latest published release of NB Menu démarrer WP.

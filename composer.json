@@ -1,6 +1,6 @@
 {
-  "name": "nbform/wp-start-menu",
-  "description": "An organizable application launcher for the WordPress administration.",
+  "name": "nbform/nb-menu-demarrer-wp",
+  "description": "An organizable Start menu for the WordPress administration.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "require": {
